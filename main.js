@@ -109,4 +109,5 @@ navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15
     map.setCenter(options.position);
   }
 }
+}
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -23,173 +23,156 @@ function initialize() {
     panControl: true
   });
   
-   if(navigator.geolocation) {
+  if(navigator.geolocation) {
+    
+    navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
 
-		navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
+      var lastCheckedPosition,
+          locationEventCount = 0,
+          watchID,
+          timerID;
 
-    var lastCheckedPosition,
-        locationEventCount = 0,
-        watchID,
-        timerID;
+      options = options || {};
 
-    options = options || {};
+      var checkLocation = function (position) {
+          lastCheckedPosition = position;
+          locationEventCount = locationEventCount + 1;
+          // We ignore the first event unless it's the only one received because some devices seem to send a cached
+          // location even when maxaimumAge is set to zero
+          
+          console.log("desiredAccuracy: ", options.desiredAccuracy);
+          document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
 
-    var checkLocation = function (position) {
-        lastCheckedPosition = position;
-        locationEventCount = locationEventCount + 1;
-        // We ignore the first event unless it's the only one received because some devices seem to send a cached
-        // location even when maxaimumAge is set to zero
-        
-        console.log("desiredAccuracy: ", options.desiredAccuracy);
-        document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
+          if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+              
+              console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
+              document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+              
+              clearTimeout(timerID);
+              navigator.geolocation.clearWatch(watchID);
+              foundPosition(position);
+          } else {
+              //geoprogress(position);
+              console.log("checkLocation: ", position.coords.accuracy);
+              document.write("checkLocation: ", position.coords.accuracy , " | ");
+          }
+      };
 
-        if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
-            
-            console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
-            document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
-            
-            clearTimeout(timerID);
-            navigator.geolocation.clearWatch(watchID);
-            foundPosition(position);
-        } else {
-            //geoprogress(position);
-            console.log("checkLocation: ", position.coords.accuracy);
-            document.write("checkLocation: ", position.coords.accuracy , " | ");
-        }
-    };
+      var stopTrying = function () {
+          navigator.geolocation.clearWatch(watchID);
+          foundPosition(lastCheckedPosition);
+      };
 
-    var stopTrying = function () {
-        navigator.geolocation.clearWatch(watchID);
-        foundPosition(lastCheckedPosition);
-    };
+      var onError = function (error) {
+          clearTimeout(timerID);
+          navigator.geolocation.clearWatch(watchID);
+          geolocationError(error);
+      };
 
-    var onError = function (error) {
-        clearTimeout(timerID);
-        navigator.geolocation.clearWatch(watchID);
-        geolocationError(error);
-    };
-
-    var foundPosition = function (position) {
+      var foundPosition = function (position) {
         console.log("foundPosition->accuracy ", position.coords.accuracy);
         document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
 
         //geolocationSuccess(position); 
         var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude) ;
-    	return givePos(pos);
-        console.log("foundPosition: ", this);
-    };
+      	return givePos(pos);
+      };
 
-    if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds
-    if (!options.desiredAccuracy)    options.desiredAccuracy = 20; // Default 20 meters
-    if (!options.timeout)            options.timeout = options.maxWait; // Default to maxWait
+      if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds
+      if (!options.desiredAccuracy)    options.desiredAccuracy = 20; // Default 20 meters
+      if (!options.timeout)            options.timeout = options.maxWait; // Default to maxWait
 
-    options.maximumAge = 0; // Force current locations only
-    options.enableHighAccuracy = true; // Force high accuracy (otherwise, why are you using this function?)
+      options.maximumAge = 0; // Force current locations only
+      options.enableHighAccuracy = true; // Force high accuracy (otherwise, why are you using this function?)
 
-    watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
-    timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-            
-    console.log("el otro: ", this);
-
+      watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
+      timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
 };
+
 navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15000});
 		
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag) {
+    	var content = 'Error: The Geolocation service failed.';
+    }
+    else {
+    	var content = 'Error: Your browser doesn\'t support geolocation.' ;
+    }
+     
+    var options = {
+    	map : map,
+    	position : new google.maps.LatLng(60, 105),
+    	content : content
+    };
+     
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+  }
+}
+google.maps.event.addDomListener(window, 'load', initialize);
 
-		var givePos = function (pos) {
-			var pos = pos;
-			return pos;
-		};
 
-		//var pos = new google.maps.LatLng(-32.9325566, -60.657553799999995);
-
-		var infowindow = new google.maps.InfoWindow({
-		map : map,
-		position : this.pos,
-		content : 'Found using geolocation'
-		}) ;
-
-
-	} else {
-		// Error - Browser doesn't support Geolocation
-		handleNoGeolocation(false) ;
-	}
-	function handleNoGeolocation(errorFlag) {
-		if (errorFlag) {
-			var content = 'Error: The Geolocation service failed.';
-		}
-		else {
-			var content = 'Error: Your browser doesn\'t support geolocation.' ;
-		}
-		 
-		var options = {
-			map : map,
-			position : new google.maps.LatLng(60, 105),
-			content : content
-		};
-		 
-		var infowindow = new google.maps.InfoWindow(options);
-		map.setCenter(options.position);
-	}
+/*
 
   // Show initial location at Sydney — can be changed to detect user location
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(-32.948674, -60.720103),
       new google.maps.LatLng(-32.953283, -60.626376)
-    );
+  );
   map.fitBounds(defaultBounds);
 
-	var input = (document.getElementById('pac-input'));
+  var input = (document.getElementById('pac-input'));
 
-  	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-	var searchBox = new google.maps.places.SearchBox(input, {
-		bounds: defaultBounds // have to be defined first
-	});
+  var searchBox = new google.maps.places.SearchBox(input, {
+    bounds: defaultBounds // have to be defined first
+  });
 
-  	//[START region_getplaces]
-  	// Listen for the event fired when the user selects an item from the
-  	// pick list. Retrieve the matching places for that item.
-	google.maps.event.addListener(searchBox, 'places_changed', function() {
-		var places = searchBox.getPlaces();
+    //[START region_getplaces]
+    // Listen for the event fired when the user selects an item from the
+    // pick list. Retrieve the matching places for that item.
+  google.maps.event.addListener(searchBox, 'places_changed', function() {
+    var places = searchBox.getPlaces();
 
-		for (var i = 0, marker; marker = markers[i]; i++) {
-			marker.setMap(null);
-		}
+    for (var i = 0, marker; marker = markers[i]; i++) {
+      marker.setMap(null);
+    }
 
-		// For each place, get the icon, place name, and location.
-		markers = [];
-		var bounds = new google.maps.LatLngBounds();
+    // For each place, get the icon, place name, and location.
+    markers = [];
+    var bounds = new google.maps.LatLngBounds();
 
-		for (var i = 0, place; place = places[i]; i++) {
-			var image = {
-				url: place.icon,
-				size: new google.maps.Size(71, 71),
-				origin: new google.maps.Point(0, 0),
-				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(25, 25)
-			};
+    for (var i = 0, place; place = places[i]; i++) {
+      var image = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
 
-			// Create a marker for each place.
-			var marker = new google.maps.Marker({
-				map: map,
-				icon: image,
-				title: place.name,
-				position: place.geometry.location
-			});
+      // Create a marker for each place.
+      var marker = new google.maps.Marker({
+        map: map,
+        icon: image,
+        title: place.name,
+        position: place.geometry.location
+      });
 
-			markers.push(marker);
+      markers.push(marker);
 
-			bounds.extend(place.geometry.location);
+      bounds.extend(place.geometry.location);
 
-			if (place.geometry.viewport) {
-				map.fitBounds(place.geometry.viewport);
-			} else {
-				map.setCenter(place.geometry.location);
-				map.setZoom(5);  // Why 17? Because it looks good.
-			}
-		}
-	});
-  	//[END region_getplaces]
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(5);  // Why 17? Because it looks good.
+      }
+    }
+  });
+    //[END region_getplaces]
 
   var place_markers = [];
 
@@ -226,6 +209,4 @@ navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15
     };
     // end places markers
   });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
+  */

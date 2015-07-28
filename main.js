@@ -51,11 +51,12 @@ function initialize() {
               clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);
               foundPosition(position);
-          } else {
+          }
+          /*} else {
               //geoprogress(position);
               console.log("checkLocation: ", position.coords.accuracy);
               document.write("checkLocation: ", position.coords.accuracy , " | ");
-          }
+          }*/
       };
 
       var stopTrying = function () {

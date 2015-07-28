@@ -43,15 +43,14 @@ function initialize() {
           console.log("desiredAccuracy: ", options.desiredAccuracy);
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
 
-          if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
-              alert("CACA");
+          //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
               document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
               
               clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);
               foundPosition(position);
-          }
+          //}
           /*} else {
               //geoprogress(position);
               console.log("checkLocation: ", position.coords.accuracy);

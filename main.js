@@ -44,7 +44,7 @@ function initialize() {
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
 
           if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
-              
+              alert("CACA");
               console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
               document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
               

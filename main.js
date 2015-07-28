@@ -74,8 +74,6 @@ function initialize() {
         document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
 
         //geolocationSuccess(position); 
-        var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude) ;
-      	return givePos(pos);
       };
 
       if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds

@@ -75,7 +75,7 @@ function initialize() {
 
         console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
         var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
         );
         map.fitBounds(defaultBounds);
 

@@ -43,7 +43,7 @@ function initialize() {
           /*console.log("desiredAccuracy: ", options.desiredAccuracy);
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");*/
 
-          if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+          //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var map = new google.maps.Map(document.getElementById('map-canvas'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: true
@@ -59,7 +59,7 @@ function initialize() {
               clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);
               //foundPosition(position);
-          }// else {
+          //}// else {
               //geoprogress(position);
               /*console.log("checkLocation: ", position.coords.accuracy);
               document.write("checkLocation: ", position.coords.accuracy , " | ");*/

@@ -71,6 +71,8 @@ function initialize() {
       var foundPosition = function (position) {
         console.log("foundPosition->accuracy ", position.coords.accuracy);
         document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
+        document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+
         //geolocationSuccess(position); 
       };
 

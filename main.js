@@ -33,6 +33,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
 
     var foundPosition = function (position) {
         geolocationSuccess(position);
+        console.log(position);
     };
 
     if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds

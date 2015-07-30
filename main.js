@@ -44,8 +44,14 @@ function initialize() {
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");*/
 
           //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
-              var map = new google.maps.Map(document.getElementById('map-canvas'), zoom = 4);
-              //var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+              var mapOptions = {
+                zoom: 4,
+                //center: new google.maps.LatLng(-33, 151),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                zoomControl: true,
+              };
+              var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
               
               /*{
                 mapTypeId: google.maps.MapTypeId.ROADMAP,

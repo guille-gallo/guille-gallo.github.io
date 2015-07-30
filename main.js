@@ -40,8 +40,8 @@ function initialize() {
           // We ignore the first event unless it's the only one received because some devices seem to send a cached
           // location even when maxaimumAge is set to zero
           
-          console.log("desiredAccuracy: ", options.desiredAccuracy);
-          document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
+          /*console.log("desiredAccuracy: ", options.desiredAccuracy);
+          document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");*/
 
           if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -61,8 +61,8 @@ function initialize() {
               //foundPosition(position);
           } else {
               //geoprogress(position);
-              console.log("checkLocation: ", position.coords.accuracy);
-              document.write("checkLocation: ", position.coords.accuracy , " | ");
+              /*console.log("checkLocation: ", position.coords.accuracy);
+              document.write("checkLocation: ", position.coords.accuracy , " | ");*/
           }
       };
 
@@ -78,11 +78,11 @@ function initialize() {
       };
 
       var foundPosition = function (position) {
-        console.log("foundPosition->accuracy ", position.coords.accuracy);
+        //console.log("foundPosition->accuracy ", position.coords.accuracy);
         /*document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
         document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );*/
 
-        console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+        //console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
         //geolocationSuccess(position); 
       };
 

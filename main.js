@@ -43,18 +43,23 @@ function initialize() {
           console.log("desiredAccuracy: ", options.desiredAccuracy);
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
 
-          //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
-              console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
-              document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+          if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+              var defaultBounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+              );
+              map.fitBounds(defaultBounds);
+
+              //console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
+              //document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
               
               clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);
-              foundPosition(position);
-          //} else {
+              //foundPosition(position);
+          } else {
               //geoprogress(position);
-              //console.log("checkLocation: ", position.coords.accuracy);
-              //document.write("checkLocation: ", position.coords.accuracy , " | ");
-          //}
+              console.log("checkLocation: ", position.coords.accuracy);
+              document.write("checkLocation: ", position.coords.accuracy , " | ");
+          }
       };
 
       var stopTrying = function () {
@@ -69,16 +74,11 @@ function initialize() {
       };
 
       var foundPosition = function (position) {
-        //console.log("foundPosition->accuracy ", position.coords.accuracy);
+        console.log("foundPosition->accuracy ", position.coords.accuracy);
         /*document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
         document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );*/
 
-        //console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
-        var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-        );
-        map.fitBounds(defaultBounds);
-
+        console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
         //geolocationSuccess(position); 
       };
 

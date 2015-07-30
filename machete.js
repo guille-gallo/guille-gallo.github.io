@@ -1,5 +1,3 @@
-/*
-
   // Show initial location at Sydney — can be changed to detect user location
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(-32.948674, -60.720103),
@@ -95,4 +93,3 @@
     };
     // end places markers
   });
-  */

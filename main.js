@@ -45,7 +45,7 @@ function initialize() {
 
           //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var mapOptions = {
-                zoom: -2,
+                zoom: 4,
                 //center: new google.maps.LatLng(-33, 151),
                 mapTypeControlOptions: {
                   style: google.maps.MapTypeControlStyle.DEFAULT,
@@ -105,10 +105,9 @@ function initialize() {
       watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
       timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
     };
-
     navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15000});
   	
-    function handleNoGeolocation(errorFlag) {
+    /*function handleNoGeolocation(errorFlag) {
       
       if (errorFlag) {
       	var content = 'Error: The Geolocation service failed.';
@@ -125,7 +124,7 @@ function initialize() {
        
       var infowindow = new google.maps.InfoWindow(options);
       map.setCenter(options.position);
-    }
+    }*/
   }
 }
 google.maps.event.addDomListener(window, 'load', initialize);

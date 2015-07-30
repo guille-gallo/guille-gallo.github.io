@@ -47,15 +47,16 @@ function initialize() {
               var mapOptions = {
                 zoom: 0,
                 //center: new google.maps.LatLng(-33, 151),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControl: true
+                mapTypeControlOptions: {
+                  style: google.maps.MapTypeControlStyle.DEFAULT,
+                  mapTypeIds: [
+                    google.maps.MapTypeId.ROADMAP,
+                    google.maps.MapTypeId.TERRAIN
+                  ]
+                }
               };
               var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
               
-              /*{
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                panControl: true
-              });*/
               var defaultBounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
               );

@@ -44,6 +44,10 @@ function initialize() {
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
 
           if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+              var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                panControl: true
+              });
               var defaultBounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
               );

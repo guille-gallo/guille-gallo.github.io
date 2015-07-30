@@ -70,8 +70,14 @@ function initialize() {
 
       var foundPosition = function (position) {
         console.log("foundPosition->accuracy ", position.coords.accuracy);
-        document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
-        document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+        /*document.write("foundPosition->accuracy ", position.coords.accuracy, " | ");
+        document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );*/
+
+        console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        );
+        map.fitBounds(defaultBounds);
 
         //geolocationSuccess(position); 
       };

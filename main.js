@@ -42,20 +42,20 @@ function initialize() {
           
           console.log("desiredAccuracy: ", options.desiredAccuracy);
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
+          console.log("position.coords.accuracy: " , position.coords.accuracy);
 
-          //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+          if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
               document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );
               
               clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);
               foundPosition(position);
-          //}
-          /*} else {
+          } else {
               //geoprogress(position);
               console.log("checkLocation: ", position.coords.accuracy);
               document.write("checkLocation: ", position.coords.accuracy , " | ");
-          }*/
+          }
       };
 
       var stopTrying = function () {

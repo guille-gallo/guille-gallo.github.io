@@ -45,7 +45,7 @@ function initialize() {
 
           //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var mapOptions = {
-                zoom: 4,
+                zoom: 1,
                 center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 mapTypeControlOptions: {
                   style: google.maps.MapTypeControlStyle.DEFAULT,

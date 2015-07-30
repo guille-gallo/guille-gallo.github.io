@@ -45,8 +45,8 @@ function initialize() {
 
           //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var mapOptions = {
-                zoom: 9,
-                //center: new google.maps.LatLng(-33, 151),
+                zoom: 4,
+                center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 mapTypeControlOptions: {
                   style: google.maps.MapTypeControlStyle.DEFAULT,
                   mapTypeIds: [
@@ -57,10 +57,10 @@ function initialize() {
               };
               var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
               
-              var defaultBounds = new google.maps.LatLngBounds(
+              /*var defaultBounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
               );
-              map.fitBounds(defaultBounds);
+              map.fitBounds(defaultBounds);*/
 
               //console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
               //document.write("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude , " | " );

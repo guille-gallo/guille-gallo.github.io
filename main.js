@@ -42,7 +42,8 @@ function initialize() {
           
           console.log("desiredAccuracy: ", options.desiredAccuracy);
           document.write("desiredAccuracy: ", options.desiredAccuracy, " | ");
-          console.log("position.coords.accuracy: " , position.coords.accuracy);
+
+          console.log(clearTimeout(timerID));
 
           if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               console.log("current position: ", "current latitude: " , position.coords.latitude , " | ", "current longitude: ", position.coords.longitude )
@@ -85,27 +86,28 @@ function initialize() {
 
       watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
       timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-};
-
-navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15000});
-		
-  function handleNoGeolocation(errorFlag) {
-    if (errorFlag) {
-    	var content = 'Error: The Geolocation service failed.';
-    }
-    else {
-    	var content = 'Error: Your browser doesn\'t support geolocation.' ;
-    }
-     
-    var options = {
-    	map : map,
-    	position : new google.maps.LatLng(60, 105),
-    	content : content
     };
-     
-    var infowindow = new google.maps.InfoWindow(options);
-    map.setCenter(options.position);
+
+    navigator.geolocation.getAccurateCurrentPosition({desiredAccuracy:20, maxWait:15000});
+  	
+    function handleNoGeolocation(errorFlag) {
+      
+      if (errorFlag) {
+      	var content = 'Error: The Geolocation service failed.';
+      }
+      else {
+      	var content = 'Error: Your browser doesn\'t support geolocation.' ;
+      }
+       
+      var options = {
+      	map : map,
+      	position : new google.maps.LatLng(60, 105),
+      	content : content
+      };
+       
+      var infowindow = new google.maps.InfoWindow(options);
+      map.setCenter(options.position);
+    }
   }
-}
 }
 google.maps.event.addDomListener(window, 'load', initialize);

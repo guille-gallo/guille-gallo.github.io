@@ -5,6 +5,7 @@
 			type="text/javascript" 
 			src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true">
 		</script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 
 		<title>PincheMiGoma</title>
@@ -23,11 +24,25 @@
 			    top: 5px;
 			    border: 1px solid;
 	        }
+	        #blocksSelection {
+	        	position: absolute;
+			    top: 15px;
+			    left: 280px;
+			    width: 28%;
+	        }
     	</style>
 	</head>
 	
 	<body>
 		<div id="map-canvas"></div>
+		<select id="blocksSelection">
+			<option value="default">Cant. de cuadras dispuesto a caminar: </option>
+			<option value="2">2</option>
+			<option value="4">4</option>
+			<option value="6">6</option>
+			<option value="8">8</option>
+			<option value="10">10</option>
+		</select>
 		<div id="outputDiv"></div>
 	</body>
 </html>

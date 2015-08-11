@@ -38,7 +38,6 @@ function initialize() {
           // We ignore the first event unless it's the only one received because some devices seem to send a cached
           // location even when maxaimumAge is set to zero
 
-          console.log("position.coords.accuracy: ", options.desiredAccuracy);
           //if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
               var mapOptions = {
                 zoom: 19,
@@ -55,16 +54,19 @@ function initialize() {
               
               var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
               
-              //displayDirection(currentPosition, map);
+              displayDirection(currentPosition, map);
               getDistance(currentPosition, map);
               
               /*clearTimeout(timerID);
               navigator.geolocation.clearWatch(watchID);*/
-
-              console.log("checkLocation: ", position.coords.accuracy);
       };
 
-      /*var displayDirection = function (currentPosition, map) {
+      $('#blocksSelection').change(function() {
+        console.log( "Handler for .change() called." );
+        console.log($('#blocksSelection').find(":selected").text());
+      });
+
+      var displayDirection = function (currentPosition, map) {
         var items = ['-32.951154, -60.650885', '-32.947413, -60.654120', '-32.944960, -60.643578'];
        
         var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -81,7 +83,7 @@ function initialize() {
             directionsDisplay.setMap(map);
           }
         });
-      }*/
+      }
 
     var getDistance = function (currentPosition, map) {
       var markersArray = [];
@@ -112,11 +114,9 @@ function initialize() {
 
           for (var i = 0; i < origins.length; i++) {
             var results = response.rows[i].elements;
-            addMarker(origins[i], false);
+            //addMarker(origins[i], false);
             for (var j = 0; j < results.length; j++) {
-              console.log("distancia (metros): " , results[i].distance.value);
-              console.log("tiempo caminando: " , results[i].duration);
-              addMarker(destinations[j], true);
+              //addMarker(destinations[j], true);
               outputDiv.innerHTML += 'DESDE: ' + origins[i] + '</br>' + ' HASTA ' + destinations[j]
                   + '</br>' + 'DISTANCIA: ' + results[j].distance.text + '</br>' + ' TIEMPO: '
                   + results[j].duration.text + '<br>';
@@ -125,7 +125,6 @@ function initialize() {
         }
       }
       function addMarker(location, isDestination) {
-        console.log("addMarker");
         var icon;
         if (isDestination) {
           icon = destinationIcon;
@@ -134,7 +133,6 @@ function initialize() {
         }
         geocoder.geocode({'address': location}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
-            console.log("geocoder.geocode: " ,status);
             bounds.extend(results[0].geometry.location);
             map.fitBounds(bounds);
             var marker = new google.maps.Marker({
@@ -143,7 +141,6 @@ function initialize() {
               icon: icon
             });
             markersArray.push(marker);
-            console.log(markersArray);
           } else {
             alert('Geocode was not successful for the following reason: '
               + status);

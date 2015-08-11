@@ -58,11 +58,14 @@ function initialize() {
               var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
               
               var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-              var marker = new google.maps.Marker({
+              /*var marker = new google.maps.Marker({
                   position: currentPosition,
                   map: map,
                   title: 'Hello World!'
-              });
+              });*/
+
+              //getGomerias(map);
+              displayDirection(currentPosition, map);
               /*var defaultBounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
               );
@@ -80,6 +83,35 @@ function initialize() {
               //document.write("checkLocation: ", position.coords.accuracy , " | ");
             //}
       };
+
+      var displayDirection = function (currentPosition, map) {
+
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var directionsService = new google.maps.DirectionsService();
+        var gomeria = '-32.951154, -60.650885';
+        var request = {
+          origin:currentPosition,
+          destination:gomeria,
+          travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+                    console.log("google.maps.DirectionsStatus.OK");
+            directionsDisplay.setDirections(response);
+            directionsDisplay.setMap(map);
+          }
+        });
+      }
+
+
+      /*var getGomerias = function (map) {
+        var currentPosition = new google.maps.LatLng(-32.948603, -60.647416);
+        var marker = new google.maps.Marker({
+            position: currentPosition,
+            map: map,
+            title: 'Hello World!'
+        });
+      };*/
 
       var stopTrying = function () {
           navigator.geolocation.clearWatch(watchID);

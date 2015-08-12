@@ -1,17 +1,3 @@
-/*var random_places = [
-  ['Moscow1', 55.822083, 37.665453, 4],
-  ['Moscow2', 55.604697, 37.642107, 4],
-  ['Lisbon1', 38.749402, -9.120034, 4],
-  ['Lisbon2', 38.708960, -9.169130, 4],
-  ['NewYork1', 40.784513, -73.976630, 4],
-  ['NewYork2', 40.707522, -74.037055, 4],
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -32.951132, -60.650876, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];*/
-
 var initialLocation;
 var browserSupportFlag =  new Boolean();
 var geocoder;
@@ -19,8 +5,8 @@ var bounds = new google.maps.LatLngBounds();
 var map;
 
 function initialize() {
-  //map = new google.maps.Map(document.getElementById('map-canvas'));
   geocoder = new google.maps.Geocoder();
+
   if(navigator.geolocation) {
     
     navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
@@ -64,6 +50,9 @@ function initialize() {
       $('#blocksSelection').change(function() {
         console.log( "Handler for .change() called." );
         console.log($('#blocksSelection').find(":selected").text());
+        var getUserBlocksQtySelection = function () {
+          var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
+        }      
       });
 
       var displayDirection = function (currentPosition, map) {
@@ -85,75 +74,91 @@ function initialize() {
         });
       }
 
-    var getDistance = function (currentPosition, map) {
-      var markersArray = [];
-      var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
-      var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
+      var getDistance = function (currentPosition, map) {
+        
+        $.get( "gomerias.json", function( data ) {
+          getCoordinates(data);
+        });
 
-      (function calculateDistances() {
-        var service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix(
-          {
-            origins: [currentPosition],
-            destinations: ['-32.951154, -60.650885'],
-            travelMode: google.maps.TravelMode.WALKING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false
-          }, callback);
-      })();
-      function callback(response, status) {
-        if (status != google.maps.DistanceMatrixStatus.OK) {
-          alert('Error was: ' + status);
-        } else {
-          var origins = response.originAddresses;
-          var destinations = response.destinationAddresses;
-          var outputDiv = document.getElementById('outputDiv');
-          outputDiv.innerHTML = '';
-          deleteOverlays();
+        var getCoordinates = function (data) {
+          var coordinates = [];
+          for (var i = 0; i < data.length; i++) {
+            coordinates[i] = data[i].coordinates;
+          }  
+          calculateDistances(coordinates);      
+        }
 
-          for (var i = 0; i < origins.length; i++) {
-            var results = response.rows[i].elements;
-            //addMarker(origins[i], false);
-            for (var j = 0; j < results.length; j++) {
-              //addMarker(destinations[j], true);
-              outputDiv.innerHTML += 'DESDE: ' + origins[i] + '</br>' + ' HASTA ' + destinations[j]
-                  + '</br>' + 'DISTANCIA: ' + results[j].distance.text + '</br>' + ' TIEMPO: '
-                  + results[j].duration.text + '<br>';
+        var markersArray = [];
+        var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
+        var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
+
+        function calculateDistances(coordinates) {
+          console.log(coordinates);
+          var service = new google.maps.DistanceMatrixService();
+          service.getDistanceMatrix(
+            {
+              origins: [currentPosition],
+              destinations: coordinates,
+              travelMode: google.maps.TravelMode.WALKING,
+              unitSystem: google.maps.UnitSystem.METRIC,
+              avoidHighways: false,
+              avoidTolls: false
+            }, callback);
+        }
+        function callback(response, status) {
+          if (status != google.maps.DistanceMatrixStatus.OK) {
+            alert('Error was: ' + status);
+          } else {
+            var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
+            var outputDiv = document.getElementById('outputDiv');
+            outputDiv.innerHTML = '';
+            deleteOverlays();
+            
+            console.log(getUserBlocksQtySelection());
+
+            for (var i = 0; i < origins.length; i++) {
+              var results = response.rows[i].elements;
+              //addMarker(origins[i], false);
+              for (var j = 0; j < results.length; j++) {
+                //addMarker(destinations[j], true);
+                outputDiv.innerHTML += 'DESDE: ' + origins[i] + '</br>' + ' HASTA ' + destinations[j]
+                    + '</br>' + 'DISTANCIA: ' + results[j].distance.text + '</br>' + ' TIEMPO: '
+                    + results[j].duration.text + '<br>' + "-------------------------" + "</br>";
+              }
             }
           }
         }
-      }
-      function addMarker(location, isDestination) {
-        var icon;
-        if (isDestination) {
-          icon = destinationIcon;
-        } else {
-          icon = originIcon;
-        }
-        geocoder.geocode({'address': location}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            bounds.extend(results[0].geometry.location);
-            map.fitBounds(bounds);
-            var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location,
-              icon: icon
-            });
-            markersArray.push(marker);
+        function addMarker(location, isDestination) {
+          var icon;
+          if (isDestination) {
+            icon = destinationIcon;
           } else {
-            alert('Geocode was not successful for the following reason: '
-              + status);
+            icon = originIcon;
           }
-        });
-      }
-      function deleteOverlays() {
-        for (var i = 0; i < markersArray.length; i++) {
-          markersArray[i].setMap(null);
+          geocoder.geocode({'address': location}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              bounds.extend(results[0].geometry.location);
+              map.fitBounds(bounds);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                icon: icon
+              });
+              markersArray.push(marker);
+            } else {
+              alert('Geocode was not successful for the following reason: '
+                + status);
+            }
+          });
         }
-        markersArray = [];
-      }
-    };
+        function deleteOverlays() {
+          for (var i = 0; i < markersArray.length; i++) {
+            markersArray[i].setMap(null);
+          }
+          markersArray = [];
+        }
+      };
 
       // aparentemente esto se ejecuta al retornar la primer ubicación o cuando ya no va a intenar más obtener una ubicación.
       var stopTrying = function () {

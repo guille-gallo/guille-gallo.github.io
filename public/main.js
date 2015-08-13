@@ -28,10 +28,14 @@ function initialize() {
             ]
           }
         };
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        
-        var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        getDistance(currentPosition, map);
+
+        //GLOBAL HERE. FIX!!!!
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);    
+        currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        /////////////
+
+        getDistance(currentPosition);
+
       };
 //------------------------------------------------------------------------------------------------------------------------------------------
 //      GEOLOCATION FUNCTIONS:
@@ -69,29 +73,46 @@ function initialize() {
     };
 //------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------------------
-    var getDistance = function (currentPosition, map) {
+    var getDistance = function (currentPosition) {
 
       $.get( "gomerias.json", function( data ) {
-        getCoordinates(data);
+        getCoordinates(data, currentPosition);
       });
 
-      var getCoordinates = function (data) {
+      var getCoordinates = function (data, currentPosition) {
         var coordinates = [];
         for (var i = 0; i < data.length; i++) {
-          coordinates[i] = data[i].coordinates;
-        }  
-        calculateDistances(coordinates);      
+          coordinates.push({
+              LatLng: data[i].coordinates,
+              id: data[i].id,
+              name: data[i].name,
+          });
+        }
+        //calculateDistances(coordinates);      
+        displayDirection(currentPosition, coordinates);
       }
 
       var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
       var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
+    };
 
+    var displayDirection = function (currentPosition, coordinates) {
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      var directionsService = new google.maps.DirectionsService();
+      
+      calculateDistances(coordinates);
+      
       function calculateDistances(coordinates) {
+        var currentCoordinates = [];
+        for (var i = 0; i < coordinates.length; i++) {
+          currentCoordinates[i] = coordinates[i].LatLng;
+        }
+
         var service = new google.maps.DistanceMatrixService();
         service.getDistanceMatrix(
           {
             origins: [currentPosition],
-            destinations: coordinates,
+            destinations: currentCoordinates,
             travelMode: google.maps.TravelMode.WALKING,
             unitSystem: google.maps.UnitSystem.METRIC,
             avoidHighways: false,
@@ -99,53 +120,61 @@ function initialize() {
           }, callback);
       }
       function callback(response, status) {
+        //console.log(coordinates); //YEAH
         if (status != google.maps.DistanceMatrixStatus.OK) {
           alert('Error was: ' + status);
         } else {
-          var origins = response.originAddresses;
-          var destinations = response.destinationAddresses;
-          var outputDiv = document.getElementById('outputDiv');
-
-          $('#blocksSelection').change(function() {
-            outputDiv.innerHTML = ''; 
-
-            for (var i = 0; i < origins.length; i++) {
+            //var destinations = response.destinationAddresses;
+            //var origins = response.originAddresses;
+            var distances = [];
+            for (var i = 0; i <  response.rows.length; i++) {
+              console.log(response.rows[i].elements);
               var results = response.rows[i].elements;
+               for (var j = 0; j < results.length; j++) {
+                distances[j] = results[j].distance.value;
+                coordinates[j].distance = distances[j];
+              }
 
-              for (var j = 0; j < results.length; j++) {
-                var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
-                var metersSelection = (userBlocksQtySelection * 100);
-
-                if (results[j].distance.value <= metersSelection) {
-                  outputDiv.innerHTML += 'DESDE: ' + origins[i] + '</br>' + ' HASTA: ' + destinations[j]
-                    + '</br>' + 'DISTANCIA: ' + results[j].distance.text + '</br>' + ' TIEMPO: '
-                    + results[j].duration.text + '<br>' + "-------------------------" + "</br>";
-                } else {
-                  console.log("no matches");
-                }            
-              };
             }
-          });         
+            //console.log(coordinates);
+            sayCoordinates(coordinates);
         }
       }
-    };
 
-    var displayDirection = function (currentPosition, map) {     
-      var directionsDisplay = new google.maps.DirectionsRenderer();
-      var directionsService = new google.maps.DirectionsService();
-      
-      var request = {
-        origin: currentPosition,
-        destination:'-32.951154, -60.650885',
-        travelMode: google.maps.TravelMode.WALKING
+      var sayCoordinates = function (coordinates) {
+        return coordinates;
+      }
+
+      $('#blocksSelection').change(function() { 
+        var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
+        var meterSelection = (userBlocksQtySelection * 100);
+        makeWays(meterSelection);
+      });
+
+      var makeWays = function (meterSelection) {
+        sayCoordinates();
+        for (var i = 0; i < coordinates.length; i++) {
+          console.log(coordinates[i]);
+          if(coordinates[i].distance <= meterSelection) {
+            console.log(coordinates[i].LatLng , coordinates[i].id)
+
+            var request = {
+              origin: currentPosition,
+              destination:coordinates[i].LatLng,
+              travelMode: google.maps.TravelMode.WALKING
+            };
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                directionsDisplay.setMap(map);
+              }
+            });
+          } 
+        }
+
+
       };
 
-      directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
-          directionsDisplay.setMap(map);
-        }
-      });
     }
 
     navigator.geolocation.getAccurateCurrentPosition({maxWait:15000});

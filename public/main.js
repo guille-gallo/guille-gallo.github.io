@@ -31,7 +31,7 @@ function initialize() {
 
         //GLOBAL HERE. FIX!!!!
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);    
-        currentPosition = new google.maps.LatLng(-32.958562, -60.640462);
+        currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         /////////////
 
         getDistance(currentPosition);

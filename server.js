@@ -1,9 +1,17 @@
-var express = require('express'),
-    app = express();
-    app.use(express.bodyParser());
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var cookieSession = require('cookie-session')
 
-app.get('/gomerias.json', function(req, res) {
-    res.send();
+var app = express();
+    app.use(cookieParser());
+    app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({extended: true}));
+    app.use(cookieSession({secret: 'app_1'}));
+
+app.get('public/gomerias.json', function(req, res) {
+	//console.log(req.body);
+    res.send(req.body);
 });
 
 app.use(express.static(__dirname + '/public'));

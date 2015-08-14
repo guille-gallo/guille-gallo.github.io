@@ -19,7 +19,7 @@ function initialize() {
       var checkLocation = function (position) {
         var mapOptions = {
           zoom: 19,
-          center: new google.maps.LatLng(-32.961798, -60.648755),
+          center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
           mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DEFAULT,
             mapTypeIds: [
@@ -31,7 +31,7 @@ function initialize() {
 
         //GLOBAL HERE. FIX!!!!
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);    
-        currentPosition = new google.maps.LatLng(-32.961798, -60.648755);
+        currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         /////////////
 
         getDistance(currentPosition);
@@ -147,7 +147,7 @@ function initialize() {
       });
 
       var makeWays = function (meterSelection) {
-        sayCoordinates();
+        console.log("makeWays");
         var destinationOptions = [];
 
         function compare(a,b) {
@@ -159,9 +159,13 @@ function initialize() {
         }
         coordinates = coordinates.sort(compare);
 
-        for (var i = 0; i < coordinates.length; i++) {          
+        for (var i = 0; i < coordinates.length; i++) {
+        console.log("inside first for loop");          
           if(coordinates[i].distance <= meterSelection) {
-          
+            
+            console.log("selección: " + meterSelection);
+            console.log("dest. distance " + coordinates[i].distance);
+            
             outputDiv.innerHTML += 
             '<a id="gomeriaLink">' + 'Gomería: ' + coordinates[i].name + '</a>' 
             + '</br>' +'Dirección: ' + coordinates[i].address 
@@ -170,27 +174,31 @@ function initialize() {
             + '</br>' 
             + '--------------' 
             + '</br>';
-          } 
+
+            displayWay(currentPosition, coordinates);
+
+          } else{
+            console.log("no matches");
+          }
         }
+      };
+
+      var displayWay = function () {
         for (var i = 0; i < coordinates.length; i++) {  
-            var request = {
-              origin: currentPosition,
-              destination:coordinates[i].LatLng,
-              travelMode: google.maps.TravelMode.WALKING
-            };
-            directionsService.route(request, function(response, status) {
-              if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-                directionsDisplay.setMap(map);
-              }
-            });
+          var request = {
+            origin: currentPosition,
+            destination:coordinates[i].LatLng,
+            travelMode: google.maps.TravelMode.WALKING
+          };
+          directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+              directionsDisplay.setMap(map);
+            }
+          });
           break;
         }
-
-        /*$("#gomeriaLink").click(function() {
-          paponga(currentPosition);
-        });*/
-      };
+      }
     }
     navigator.geolocation.getAccurateCurrentPosition({maxWait:15000});
   }

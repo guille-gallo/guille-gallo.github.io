@@ -1,3 +1,8 @@
+/*
+-Cuando no hay matches, mostrar mensaje sin que se repita por el for loop.
+-Click en el link de otra gomería tiene que refrescar la ruta sugerida.
+*/
+
   // Show initial location at Sydney — can be changed to detect user location
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(-32.948674, -60.720103),

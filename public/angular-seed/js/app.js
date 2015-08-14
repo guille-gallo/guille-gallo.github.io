@@ -1,20 +1,16 @@
 var pincheGomaApp = angular.module('pincheGomaApp', [
-  'ngRoute'
-  //'expressTestAppControllers'
+  'ngRoute',
+  'pincheGomaAppControllers'
 ]);
 
-/*expressTestApp.config(['$routeProvider',
+pincheGomaApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/login', {
-        templateUrl: 'partials/login.html',
-        controller: 'LoginCtrl'
-      }).
-      when('/articles-list', {
-        templateUrl: 'partials/articles-list.html',
-        controller: 'ArticlesListCtrl'
+      when('/', {
+        templateUrl: 'partials/main.html',
+        controller: 'MainCtrl'
       }).
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       });
-}]);*/
+}]);

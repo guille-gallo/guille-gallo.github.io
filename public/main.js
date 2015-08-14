@@ -19,7 +19,7 @@ function initialize() {
       var checkLocation = function (position) {
         var mapOptions = {
           zoom: 19,
-          center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+          center: new google.maps.LatLng(-32.961798, -60.648755),
           mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DEFAULT,
             mapTypeIds: [
@@ -31,7 +31,7 @@ function initialize() {
 
         //GLOBAL HERE. FIX!!!!
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);    
-        currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        currentPosition = new google.maps.LatLng(-32.961798, -60.648755);
         /////////////
 
         getDistance(currentPosition);
@@ -43,7 +43,7 @@ function initialize() {
       // aparentemente esto se ejecuta al retornar la primer ubicación o cuando ya no va a intenar más obtener una ubicación.
       var stopTrying = function () {
           navigator.geolocation.clearWatch(watchID);
-          foundPosition(lastCheckedPosition);
+          //foundPosition(lastCheckedPosition);
       };
 
       var onError = function (error) {
@@ -88,12 +88,8 @@ function initialize() {
               name: data[i].name,
           });
         }
-        //calculateDistances(coordinates);      
         displayDirection(currentPosition, coordinates);
       }
-
-      var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
-      var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
     };
 
     var displayDirection = function (currentPosition, coordinates) {
@@ -120,32 +116,31 @@ function initialize() {
           }, callback);
       }
       function callback(response, status) {
-        //console.log(coordinates); //YEAH
         if (status != google.maps.DistanceMatrixStatus.OK) {
           alert('Error was: ' + status);
         } else {
-            //var destinations = response.destinationAddresses;
-            //var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
             var distances = [];
+
             for (var i = 0; i <  response.rows.length; i++) {
-              console.log(response.rows[i].elements);
               var results = response.rows[i].elements;
                for (var j = 0; j < results.length; j++) {
                 distances[j] = results[j].distance.value;
                 coordinates[j].distance = distances[j];
+                coordinates[j].address = destinations[j];
               }
-
             }
-            //console.log(coordinates);
             sayCoordinates(coordinates);
         }
       }
 
+      // This is because we need to know the coordinates for displaying the way.
       var sayCoordinates = function (coordinates) {
         return coordinates;
       }
 
-      $('#blocksSelection').change(function() { 
+      $('#blocksSelection').change(function() {
+        outputDiv.innerHTML = ''; 
         var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
         var meterSelection = (userBlocksQtySelection * 100);
         makeWays(meterSelection);
@@ -153,11 +148,31 @@ function initialize() {
 
       var makeWays = function (meterSelection) {
         sayCoordinates();
-        for (var i = 0; i < coordinates.length; i++) {
-          console.log(coordinates[i]);
-          if(coordinates[i].distance <= meterSelection) {
-            console.log(coordinates[i].LatLng , coordinates[i].id)
+        var destinationOptions = [];
 
+        function compare(a,b) {
+          if (a.distance < b.distance)
+            return -1;
+          if (a.distance > b.distance)
+            return 1;
+          return 0;
+        }
+        coordinates = coordinates.sort(compare);
+
+        for (var i = 0; i < coordinates.length; i++) {          
+          if(coordinates[i].distance <= meterSelection) {
+          
+            outputDiv.innerHTML += 
+            '<a id="gomeriaLink">' + 'Gomería: ' + coordinates[i].name + '</a>' 
+            + '</br>' +'Dirección: ' + coordinates[i].address 
+            + '</br>' + 'Distancia: ' + (coordinates[i].distance) 
+            + ' metros apróx.' 
+            + '</br>' 
+            + '--------------' 
+            + '</br>';
+          } 
+        }
+        for (var i = 0; i < coordinates.length; i++) {  
             var request = {
               origin: currentPosition,
               destination:coordinates[i].LatLng,
@@ -169,15 +184,17 @@ function initialize() {
                 directionsDisplay.setMap(map);
               }
             });
-          } 
+          break;
         }
 
-
+        /*$("#gomeriaLink").click(function() {
+          paponga(currentPosition);
+        });*/
       };
-
     }
-
     navigator.geolocation.getAccurateCurrentPosition({maxWait:15000});
   }
+
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+

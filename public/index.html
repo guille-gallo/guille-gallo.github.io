@@ -5,7 +5,7 @@
 			type="text/javascript" 
 			src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true">
 		</script>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<title>PinchéGoma</title>
@@ -30,9 +30,12 @@
 			    left: 500px;
 			    width: 28%;
 	        }
+	        #gomeriaLink {
+	        	cursor: pointer;
+	        	font-weight: bold;
+	        }
     	</style>
-	</head>
-	
+	</head>	
 	<body>
 		<div id="map-canvas"></div>
 		<select id="blocksSelection">

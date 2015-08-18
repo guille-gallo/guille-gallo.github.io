@@ -1,0 +1,24 @@
+html, body, #map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+#outputDiv {
+	position: absolute;
+    background-color: #FFFFFF;
+    width: 20%;
+    height: auto;
+    left: 54px;
+    top: 5px;
+    border: 1px solid;
+}
+#blocksSelection {
+	position: absolute;
+    top: 15px;
+    left: 500px;
+    width: 28%;
+}
+#gomeriaLink {
+	cursor: pointer;
+	font-weight: bold;
+}

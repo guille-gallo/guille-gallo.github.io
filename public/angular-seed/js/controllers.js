@@ -160,7 +160,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		      });*/
 				
 		      $scope.makeWays = function (meterSelection) {
-		      	outputDiv.innerHTML = '';
+		      	//outputDiv.innerHTML = '';
 		      	$scope.destinos = [];
 		      	meterSelection = meterSelection * 100;
 
@@ -187,18 +187,14 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 					    distance: coordinates[i].distance
 					};
 
-		            console.log($scope.destinos);
-		            
-
-
-		            outputDiv.innerHTML += 
+		            /*outputDiv.innerHTML += 
 		            '<a id="gomeriaLink">' + 'Gomería: ' + coordinates[i].name + '</a>' 
 		            + '</br>' +'Dirección: ' + coordinates[i].address 
 		            + '</br>' + 'Distancia: ' + (coordinates[i].distance) 
 		            + ' metros apróx.' 
 		            + '</br>' 
 		            + '--------------' 
-		            + '</br>';
+		            + '</br>';*/
 
 		            displayWay(currentPosition, coordinates);
 

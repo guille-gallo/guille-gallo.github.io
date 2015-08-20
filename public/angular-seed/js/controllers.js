@@ -171,7 +171,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		          return 0;
 		        }
 		        coordinates = coordinates.sort(compare);
-
+		        $scope.destinos = [];
 		        for (var i = 0; i < coordinates.length; i++) {
 		        console.log("inside first for loop");          
 		          if(coordinates[i].distance <= meterSelection) {
@@ -179,6 +179,16 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		            console.log("selección: " + meterSelection);
 		            console.log("dest. distance " + coordinates[i].distance);
 		            
+
+		            $scope.destinos[i] = [
+		            	name = coordinates[i].name,
+		            	distance = coordinates[i].distance
+		            ]
+
+		            console.log($scope.destinos);
+		            
+
+
 		            outputDiv.innerHTML += 
 		            '<a id="gomeriaLink">' + 'Gomería: ' + coordinates[i].name + '</a>' 
 		            + '</br>' +'Dirección: ' + coordinates[i].address 

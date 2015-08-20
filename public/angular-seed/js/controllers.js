@@ -1,8 +1,9 @@
 var pincheGomaAppControllers = angular.module('pincheGomaAppControllers', []);
 
 pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $location) {
-	
+
 	if(navigator.geolocation) {
+
 		navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
 		    var watchID,
 		        timerID;
@@ -27,8 +28,10 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 				
 				getDistance($scope.currentPosition);
 			}
-			watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
-	    	timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
+			
+			// VER ESTO. CÓMO ESTABA HECHO EN EL GETACCURATECURRENTPOSITION.
+			/*watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
+	    	timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop*/
 
 	//------------------------------------------------------------------------------------------------------------------------------------------
 	//      GEOLOCATION FUNCTIONS:
@@ -80,18 +83,14 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 
 		var getDistance = function (currentPosition) {
 		// Simple GET request example :
-		 $http.get('data/gomerias.json').
-			 then(function(response) {
+		 $http.get('data/gomerias.json')
+		 	.then(function(response) {
 			 // this callback will be called asynchronously when the response is available
 			 var data = response.data;
 			 getCoordinates(data, currentPosition);
 			 }, function(response) {
 			 // called asynchronously if an error occurs or server returns response with an error status. 
 		 });
-
-	      /*$http.get( "data/gomerias.json", function( data ) {
-	        getCoordinates(data, currentPosition);
-	      });*/
 
 	      var getCoordinates = function (data, currentPosition) {
 	        var coordinates = [];
@@ -152,15 +151,19 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        return coordinates;
 		      }
 
-		      $('#blocksSelection').change(function() {
+		      /*$('#blocksSelection').change(function() {
+		      	$scope.destinos = [];
 		        outputDiv.innerHTML = ''; 
 		        var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
 		        var meterSelection = (userBlocksQtySelection * 100);
 		        makeWays(meterSelection);
-		      });
+		      });*/
+				
+		      $scope.makeWays = function (meterSelection) {
+		      	outputDiv.innerHTML = '';
+		      	$scope.destinos = [];
+		      	meterSelection = meterSelection * 100;
 
-		      var makeWays = function (meterSelection) {
-		        console.log("makeWays");
 		        var destinationOptions = [];
 
 		        function compare(a,b) {
@@ -171,19 +174,18 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		          return 0;
 		        }
 		        coordinates = coordinates.sort(compare);
-		        $scope.destinos = [];
+		        
 		        for (var i = 0; i < coordinates.length; i++) {
-		        console.log("inside first for loop");          
 		          if(coordinates[i].distance <= meterSelection) {
 		            
-		            console.log("selección: " + meterSelection);
-		            console.log("dest. distance " + coordinates[i].distance);
+		            /*console.log("selección: " + meterSelection);
+		            console.log("dest. distance " + coordinates[i].distance);*/
 		            
-
-		            $scope.destinos[i] = [
-		            	name = coordinates[i].name,
-		            	distance = coordinates[i].distance
-		            ]
+     	            $scope.destinos[i]={
+					    name: coordinates[i].name,
+					    address: coordinates[i].address,
+					    distance: coordinates[i].distance
+					};
 
 		            console.log($scope.destinos);
 		            
@@ -205,6 +207,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		          }
 		        }
 		      };
+
 
 		      var displayWay = function () {
 		        for (var i = 0; i < coordinates.length; i++) {  

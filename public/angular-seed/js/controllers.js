@@ -22,11 +22,10 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 				  }
 				};
 
-				//SHIT
-				map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-				currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				$scope.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+				$scope.currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				
-				getDistance(currentPosition);
+				getDistance($scope.currentPosition);
 			}
 			watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
 	    	timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
@@ -200,14 +199,14 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		      var displayWay = function () {
 		        for (var i = 0; i < coordinates.length; i++) {  
 		          var request = {
-		            origin: currentPosition,
+		            origin: $scope.currentPosition,
 		            destination:coordinates[i].LatLng,
 		            travelMode: google.maps.TravelMode.WALKING
 		          };
 		          directionsService.route(request, function(response, status) {
 		            if (status == google.maps.DirectionsStatus.OK) {
 		              directionsDisplay.setDirections(response);
-		              directionsDisplay.setMap(map);
+		              directionsDisplay.setMap($scope.map);
 		            }
 		          });
 		          break;

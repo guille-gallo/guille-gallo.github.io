@@ -2,15 +2,15 @@
 <html>
 	<body>
 		<div id="map-canvas"></div>
-        <select id="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
+        <select class="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
 		<!--div id="outputDiv"></div-->
 		</br>
-		<div id="outputDiv">
+		<div class="outputDiv">
 			<ul>
 				<li ng-repeat="destino in destinos">
-					{{destino.name}} </br>
+					<a href="#" class="gomeriaLink">{{destino.name}} </br>
 					{{destino.address}} </br>
-					{{destino.distance}}
+					{{destino.distance}}</a>
 				</li>
 			</ul>
 		</div>

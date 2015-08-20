@@ -3,7 +3,7 @@ html, body, #map-canvas {
 	margin: 0px;
 	padding: 0px
 }
-#outputDiv {
+.outputDiv {
 	position: absolute;
     background-color: #FFFFFF;
     width: 20%;
@@ -12,21 +12,12 @@ html, body, #map-canvas {
     top: 5px;
     border: 1px solid;
 }
-#blocksSelection {
+.blocksSelection {
 	position: absolute;
     top: 15px;
     left: 500px;
     width: 28%;
 }
-#gomeriaLink {
-	cursor: pointer;
-	font-weight: bold;
-}
-.test {
-    position: absolute;
-    top: 90px;
-    left: 700px;
-    width: 28%;
-    height: auto;
-    background-color: #FFFFFF;
+.gomeriaLink {
+	text-decoration: none;
 }

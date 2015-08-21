@@ -8,7 +8,7 @@
 		<div class="outputDiv">
 			<ul>
 				<li ng-repeat="destino in destinos">
-					<a href="#" class="gomeriaLink">{{destino.name}} </br>
+					<a href="javascript:void(0)" class="gomeriaLink" ng-model="destino" ng-click="saySome(destino)">{{destino.name}} </br>
 					{{destino.address}} </br>
 					{{destino.distance}}</a>
 				</li>

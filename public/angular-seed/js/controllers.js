@@ -184,6 +184,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
      	            $scope.destinos[i]={
 					    name: coordinates[i].name,
 					    address: coordinates[i].address,
+					    latLng: coordinates[i].LatLng,
 					    distance: coordinates[i].distance
 					};
 
@@ -204,9 +205,9 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        }
 		      };
 
-
-		      var displayWay = function () {
-		        for (var i = 0; i < coordinates.length; i++) {  
+     	      var displayWay = function () {
+		        for (var i = 0; i < coordinates.length; i++) {
+		        	console.log(coordinates);  
 		          var request = {
 		            origin: $scope.currentPosition,
 		            destination:coordinates[i].LatLng,
@@ -220,6 +221,27 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		          });
 		          break;
 		        }
+		      }
+
+		      $scope.saySome = function (destino) {		      	
+		      	newCoordinates = [];
+		      	newCoordinates.LatLng = destino.latLng;
+		      	//console.log(coordinates);
+		      	displayNewWay(newCoordinates);
+		      }
+		      var displayNewWay = function (newCoordinates) {
+		          console.log(newCoordinates);  
+		          var request = {
+		            origin: $scope.currentPosition,
+		            destination: newCoordinates.LatLng,
+		            travelMode: google.maps.TravelMode.WALKING
+		          };
+		          directionsService.route(request, function(response, status) {
+		            if (status == google.maps.DirectionsStatus.OK) {
+		              directionsDisplay.setDirections(response);
+		              directionsDisplay.setMap($scope.map);
+		            }
+		          });     
 		      }
 		    }
 	    };

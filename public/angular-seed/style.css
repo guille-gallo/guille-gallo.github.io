@@ -6,7 +6,7 @@ html, body, #map-canvas {
 .outputDiv {
 	position: absolute;
     background-color: #FFFFFF;
-    width: 20%;
+    width: 30%;
     height: auto;
     left: 54px;
     top: 5px;
@@ -15,8 +15,8 @@ html, body, #map-canvas {
 .blocksSelection {
 	position: absolute;
     top: 15px;
-    left: 500px;
-    width: 28%;
+    left: 400px;
+    width: 15%;
 }
 .gomeriaLink {
 	text-decoration: none;

@@ -7,10 +7,11 @@ html, body, #map-canvas {
 	position: absolute;
     background-color: #FFFFFF;
     width: 30%;
-    height: auto;
+    max-height: 200px;
     left: 54px;
     top: 5px;
     border: 1px solid;
+    overflow: scroll;
 }
 .blocksSelection {
 	position: absolute;

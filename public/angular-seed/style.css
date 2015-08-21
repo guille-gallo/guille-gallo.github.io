@@ -19,5 +19,6 @@ html, body, #map-canvas {
     width: 15%;
 }
 .gomeriaLink {
+    font-size: small;
 	text-decoration: none;
 }

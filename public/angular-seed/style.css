@@ -13,6 +13,10 @@ html, body, #map-canvas {
     border: 1px solid;
     overflow: scroll;
 }
+.outputHeader {
+    padding: 0;
+    margin: 10px 0 -16px 22px;
+}
 .blocksSelection {
 	position: absolute;
     top: 15px;

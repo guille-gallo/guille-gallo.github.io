@@ -22,10 +22,10 @@ html, body, #map-canvas {
 .showIt {
     font-weight: bold;
     position: absolute;
-    top: 60px;
-    left: 10px;
+    top: 10px;
+    left: 285px;
     background-color: #FFFFFF;
-    padding: 15px;
+    padding: 15px;    
 }
 .outputHeader {
     padding: 0;

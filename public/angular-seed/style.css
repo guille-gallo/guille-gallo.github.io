@@ -6,10 +6,10 @@ html, body, #map-canvas {
 .panel {
     width: 80%;
     background-color: #FFFFFF;
-    max-height: 90px;
+    height:auto !important;
+    max-height: 141px;
     position: absolute;
     top: 0px;
-    bottom: 0px;
     border: 2px solid;
     overflow: scroll;
 }
@@ -19,7 +19,6 @@ html, body, #map-canvas {
 }
 .blocksSelection {
     position: absolute;
-    top: 5px;
     left: 160px;
     width: 50%;
 }

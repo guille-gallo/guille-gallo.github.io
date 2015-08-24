@@ -3,24 +3,24 @@ html, body, #map-canvas {
 	margin: 0px;
 	padding: 0px
 }
-.outputDiv {
-	position: absolute;
+.panel {
+    width: 30%;
     background-color: #FFFFFF;
-    min-width: 15%;
-    max-height: 200px;
-    left: 54px;
-    top: 5px;
-    border: 1px solid;
+    max-height: 120px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    border: 2px solid;
     overflow: scroll;
 }
 .outputHeader {
     padding: 0;
-    margin: 10px 0 -16px 22px;
+    margin: 10px 0 5px 22px;
 }
 .blocksSelection {
-	position: absolute;
-    top: 15px;
-    left: 400px;
+    position: absolute;
+    top: 29px;
+    left: 250px;
     width: 15%;
 }
 .gomeriaLink {

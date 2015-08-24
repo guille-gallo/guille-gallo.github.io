@@ -1,6 +1,7 @@
 var pincheGomaApp = angular.module('pincheGomaApp', [
   'ngRoute',
-  'pincheGomaAppControllers'
+  'pincheGomaAppControllers',
+  'ngAnimate'
 ]);
 
 pincheGomaApp.config(['$routeProvider',

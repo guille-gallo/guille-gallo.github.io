@@ -2,18 +2,18 @@
 <html>
 	<body>
 		<div id="map-canvas"></div>
-        <select class="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
-		<!--div id="outputDiv"></div-->
-		</br>
-		<div class="outputDiv">
+		<div class="panel">
+	        <select class="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
+			</br>
+		
 			<h4 class="outputHeader">Gomerías:</h4>
-			<ul>
-				<li ng-repeat="destino in destinos">
+			<ul class="example-animate-container">
+				<li class="animate-repeat" ng-repeat="destino in destinos | filter:q as results">
 					<a href="javascript:void(0)" class="gomeriaLink" ng-model="destino" ng-click="saySome(destino)">{{destino.name}} </br>
 					{{destino.address}} </br>
 					Distancia: {{destino.distance}} metros apróx.</a>
 				</li>
-			</ul>
+			</ul>			
 		</div>
 	</body>
 </html>

@@ -21,7 +21,7 @@ html, body, #map-canvas {
     position: absolute;
     top: 15px;
     left: 160px;
-    width: 45%;
+    width: 50%;
 }
 select.blocksSelection{
     position: absolute;

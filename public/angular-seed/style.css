@@ -4,9 +4,9 @@ html, body, #map-canvas {
 	padding: 0px
 }
 .panel {
-    width: 45%;
+    width: 50%;
     background-color: #FFFFFF;
-    max-height: 120px;
+    max-height: 90px;
     position: absolute;
     top: 0px;
     bottom: 0px;

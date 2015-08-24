@@ -19,7 +19,7 @@ html, body, #map-canvas {
 }
 .blocksSelection {
     position: absolute;
-    top: 15px;
+    top: 5px;
     left: 160px;
     width: 50%;
 }

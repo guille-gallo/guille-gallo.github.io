@@ -189,9 +189,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		            displayWay(currentPosition, coordinates);
 
 		          } else {
-		          	if (i === (coordinates.length -1)) {
-		          		alert("no matches");
-		          	};
+	          		console.log("no matches");
 		          }
 		        }
 		      };
@@ -213,7 +211,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        }
 		      }
 
-		      $scope.saySome = function (destino) {		      	
+		      $scope.changeWay = function (destino) {		      	
 		      	newCoordinates = [];
 		      	newCoordinates.LatLng = destino.latLng;
 		      	displayNewWay(newCoordinates);

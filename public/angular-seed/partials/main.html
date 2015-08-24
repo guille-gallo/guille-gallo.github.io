@@ -10,7 +10,7 @@
 			<h4 class="outputHeader">Gomerías:</h4>
 			<ul class="example-animate-container">
 				<li class="animate-repeat" ng-repeat="destino in destinos | filter:q as results">
-					<a href="javascript:void(0)" class="gomeriaLink" ng-model="destino" ng-click="saySome(destino)">{{destino.name}} </br>
+					<a href="javascript:void(0)" class="gomeriaLink" ng-model="destino" ng-click="changeWay(destino)">{{destino.name}} </br>
 					{{destino.address}} </br>
 					Distancia: {{destino.distance}} metros apróx.</a>
 				</li>

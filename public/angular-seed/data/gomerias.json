@@ -5,18 +5,123 @@
         "coordinates": "-32.951154, -60.650885"
     },
     {
+        "id": 2,
+        "name": "Central Cordoba",
+        "coordinates": "-32.970219, -60.638520"
+    },
+    {
+        "id": 3,
+        "name": "Cerrito 400",
+        "coordinates": "-32.963604, -60.632373"
+    },
+    {
         "id": 4,
-        "name": "E Ameo",
-        "coordinates": "-32.957683, -60.632040"
+        "name": "San Martín",
+        "coordinates": "-32.969046, -60.642424"
     },
     {
         "id": 5,
-        "name": "E Ameo & hermanos",
-        "coordinates": "-32.959084, -60.644035"
+        "name": "Longo Neumáticos",
+        "coordinates": "-32.966630, -60.628546"
     },
     {
         "id": 6,
-        "name": "E Ameo & hermanos 2",
-        "coordinates": "-32.962347, -60.638166"
-    }
+        "name": "Gomería Occidente",
+        "coordinates": "-32.938248, -60.653308"
+    },
+    {
+        "id": 7,
+        "name": "Larrauri Neumáticos",
+        "coordinates": "-32.939422, -60.656485"
+    },
+    {
+        "id": 8,
+        "name": "Neumáticos Quinto Fedre",
+        "coordinates": "-32.941205, -60.666894"
+    },
+    {
+        "id": 9,
+        "name": "Neumáticos Verona",
+        "coordinates": "-32.939882, -60.666771"
+    },
+    {
+        "id": 10,
+        "name": "Junin",
+        "coordinates": "-32.926381, -60.662306"
+    },
+    {
+        "id": 11,
+        "name": "Pronel",
+        "coordinates": "-32.925838, -60.665761"
+    },
+    {
+        "id": 12,
+        "name": "Santa Fe 2378",
+        "coordinates": "-32.941902, -60.655291"
+    },
+    {
+        "id": 13,
+        "name": "Pron",
+        "coordinates": "-32.943728, -60.660037"
+    },
+    {
+        "id": 14,
+        "name": "Gomería Alicia",
+        "coordinates": "-32.940225, -60.679297"
+    },
+    {
+        "id": 15,
+        "name": "Gomería María",
+        "coordinates": "-32.929381, -60.674806"
+    },
+    {
+        "id": 16,
+        "name": "Neumáticos y servicios Amante",
+        "coordinates": "-32.968850, -60.629218"
+    },
+    {
+        "id": 17,
+        "name": "Moto GP SRL",
+        "coordinates": "-32.944573, -60.670904"
+    },
+    {
+        "id": 18,
+        "name": "Gomería Josué",
+        "coordinates": "-32.964216, -60.703605"
+    },
+    {
+        "id": 19,
+        "name": "Neumáticos Delmenico",
+        "coordinates": "-33.003907, -60.669058"
+    },
+    {
+        "id": 20,
+        "name": "Gomería Daniel",
+        "coordinates": "-33.003226, -60.655211"
+    },
+    {
+        "id": 21,
+        "name": "Wilde Neumáticos y servicios",
+        "coordinates": "-32.939537, -60.738453"
+    },
+    {
+        "id": 22,
+        "name": "Marsilin Neumaticos y servicios",
+        "coordinates": "-32.932490, -60.716021"
+    },
+    {
+        "id": 23,
+        "name": "Paoli SA",
+        "coordinates": "-32.891160, -60.693175"
+    },
+    {
+        "id": 24,
+        "name": "Cornaglia SRL",
+        "coordinates": "-32.892384, -60.692754"
+    },
+    {
+        "id": 25,
+        "name": "Neumáticos Debona",
+        "coordinates": "-32.916266, -60.673357"
+    } 
 ]

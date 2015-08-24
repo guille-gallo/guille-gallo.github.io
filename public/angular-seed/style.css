@@ -4,7 +4,7 @@ html, body, #map-canvas {
 	padding: 0px
 }
 .panel {
-    width: 30%;
+    width: 40%;
     background-color: #FFFFFF;
     max-height: 120px;
     position: absolute;
@@ -20,7 +20,7 @@ html, body, #map-canvas {
 .blocksSelection {
     position: absolute;
     top: 29px;
-    left: 250px;
+    left: 180px;
     width: 15%;
 }
 .gomeriaLink {

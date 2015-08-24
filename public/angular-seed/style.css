@@ -4,7 +4,7 @@ html, body, #map-canvas {
 	padding: 0px
 }
 .panel {
-    width: 70%;
+    width: 75%;
     background-color: #FFFFFF;
     max-height: 90px;
     position: absolute;

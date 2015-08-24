@@ -18,7 +18,6 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 
 		    options = options || {};
 			var checkLocation = function (position) {
-				console.log("checkLocation");
 				var mapOptions = {
 				  zoom: 19,
 				  center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
@@ -75,6 +74,8 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 			watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
 			timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
 		}
+	//------------------------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------------------------
 		
 		$scope.select = {};
 		$scope.select.blocks = [
@@ -159,14 +160,6 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        return coordinates;
 		      }
 
-		      /*$('#blocksSelection').change(function() {
-		      	$scope.destinos = [];
-		        outputDiv.innerHTML = ''; 
-		        var userBlocksQtySelection = $('#blocksSelection').find(":selected").text();
-		        var meterSelection = (userBlocksQtySelection * 100);
-		        makeWays(meterSelection);
-		      });*/
-				
 		      $scope.makeWays = function (meterSelection) {
 		      	//outputDiv.innerHTML = '';
 		      	$scope.destinos = [];
@@ -186,36 +179,25 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        for (var i = 0; i < coordinates.length; i++) {
 		          if(coordinates[i].distance <= meterSelection) {
 		            
-		            /*console.log("selección: " + meterSelection);
-		            console.log("dest. distance " + coordinates[i].distance);*/
-		            
-     	            $scope.destinos[i]={
+    	            $scope.destinos[i]={
 					    name: coordinates[i].name,
 					    address: coordinates[i].address,
 					    latLng: coordinates[i].LatLng,
 					    distance: coordinates[i].distance
 					};
 
-		            /*outputDiv.innerHTML += 
-		            '<a id="gomeriaLink">' + 'Gomería: ' + coordinates[i].name + '</a>' 
-		            + '</br>' +'Dirección: ' + coordinates[i].address 
-		            + '</br>' + 'Distancia: ' + (coordinates[i].distance) 
-		            + ' metros apróx.' 
-		            + '</br>' 
-		            + '--------------' 
-		            + '</br>';*/
-
 		            displayWay(currentPosition, coordinates);
 
-		          } else{
-		            console.log("no matches");
+		          } else {
+		          	if (i === (coordinates.length -1)) {
+		          		alert("no matches");
+		          	};
 		          }
 		        }
 		      };
 
      	      var displayWay = function () {
 		        for (var i = 0; i < coordinates.length; i++) {
-		        	console.log(coordinates);  
 		          var request = {
 		            origin: $scope.currentPosition,
 		            destination:coordinates[i].LatLng,
@@ -234,11 +216,9 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		      $scope.saySome = function (destino) {		      	
 		      	newCoordinates = [];
 		      	newCoordinates.LatLng = destino.latLng;
-		      	//console.log(coordinates);
 		      	displayNewWay(newCoordinates);
 		      }
 		      var displayNewWay = function (newCoordinates) {
-		          console.log(newCoordinates);  
 		          var request = {
 		            origin: $scope.currentPosition,
 		            destination: newCoordinates.LatLng,
@@ -256,6 +236,4 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 
 		navigator.geolocation.getAccurateCurrentPosition({maxWait:15000});
 	}
-//------------------------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------------------------
 });

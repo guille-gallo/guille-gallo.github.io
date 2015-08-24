@@ -15,11 +15,17 @@ html, body, #map-canvas {
 }
 .outputHeader {
     padding: 0;
-    margin: 10px 0 5px 22px;
+    margin: 10px 0 18px 22px;
 }
 .blocksSelection {
     position: absolute;
-    top: 33px;
+    top: 15px;
+    left: 160px;
+    width: 45%;
+}
+select.blocksSelection{
+    position: absolute;
+    top: 43px;
     left: 160px;
     width: 45%;
 }

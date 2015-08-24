@@ -70,7 +70,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		
 		$scope.select = {};
 		$scope.select.blocks = [
-			{'name': 'Cuadras dispuesto a caminar:', 'value': ''},
+			{'name': '', 'value': ''},
 			{'name': '2', 'value': '2'},
 			{'name': '4', 'value': '4'},
 			{'name': '6', 'value': '6'},

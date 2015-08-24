@@ -3,6 +3,7 @@
 	<body>
 		<div id="map-canvas"></div>
 		<div class="panel">
+			<h5 class="blocksSelection">Cantidad de cuadras dispuesto a caminar:</h5>
 	        <select class="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
 			</br>
 		

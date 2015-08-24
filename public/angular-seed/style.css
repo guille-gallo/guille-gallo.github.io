@@ -13,6 +13,19 @@ html, body, #map-canvas {
     border: 2px solid;
     overflow: scroll;
 }
+.hideIt {
+        font-weight: bold;
+  padding: 6px;
+    float: right;
+}
+.showIt {
+    font-weight: bold;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background-color: #FFFFFF;
+    padding: 15px;
+}
 .outputHeader {
     padding: 0;
     margin: 10px 0 18px 22px;

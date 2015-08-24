@@ -2,7 +2,9 @@
 <html>
 	<body>
 		<div id="map-canvas"></div>
-		<div class="panel">
+		<span class="showIt" ng-click="showIt()" ng-show="!displayed">Mostrar panel:</span>
+		<div class="panel" ng-show="displayed">
+			<span class="hideIt" ng-click="hideIt()">X</span>
 			<h5 class="blocksSelection">Cantidad de cuadras dispuesto a caminar:</h5>
 	        <select class="blocksSelection" ng-model="select.block" ng-options="select.value as select.name for select in select.blocks" ng-change="makeWays(select.block)"></select>
 			</br>

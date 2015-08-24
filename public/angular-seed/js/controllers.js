@@ -1,6 +1,14 @@
 var pincheGomaAppControllers = angular.module('pincheGomaAppControllers', []);
 
 pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $location) {
+	
+	$scope.displayed = true;
+	$scope.hideIt = function () {
+		$scope.displayed = false;
+	};
+	$scope.showIt = function () {
+		$scope.displayed = true;
+	};
 
 	if(navigator.geolocation) {
 

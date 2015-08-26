@@ -37,17 +37,12 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 				getDistance($scope.currentPosition);
 			}
 			
-			// VER ESTO. CÓMO ESTABA HECHO EN EL GETACCURATECURRENTPOSITION.
-			/*watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
-	    	timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop*/
-
 	//------------------------------------------------------------------------------------------------------------------------------------------
 	//      GEOLOCATION FUNCTIONS:
 	//------------------------------------------------------------------------------------------------------------------------------------------
-			// aparentemente esto se ejecuta al retornar la primer ubicación o cuando ya no va a intenar más obtener una ubicación.
+
 			var stopTrying = function () {
 			  navigator.geolocation.clearWatch(watchID);
-			  //foundPosition(lastCheckedPosition);
 			};
 
 			var onError = function (error) {
@@ -252,7 +247,6 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		      }
 		    }
 	    };
-
-		navigator.geolocation.getAccurateCurrentPosition({maxWait:15000});
+		navigator.geolocation.getAccurateCurrentPosition({});
 	}
 });

@@ -200,6 +200,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 
 		          } else {
 		          	$scope.noMatchesMessage = true;
+		          	$scope.moreGomerias = false;
 		          }		          
 		        }
 		      };

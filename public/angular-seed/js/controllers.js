@@ -9,6 +9,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 	$scope.showIt = function () {
 		$scope.displayed = true;
 	};
+	$scope.noMatchesMessage = false;
 
 	if(navigator.geolocation) {
 
@@ -160,8 +161,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        return coordinates;
 		      }
 
-		      $scope.makeWays = function (meterSelection) {
-		      	//outputDiv.innerHTML = '';
+		      $scope.makeWays = function (meterSelection, moreDestinations) {
 		      	$scope.destinos = [];
 		      	meterSelection = meterSelection * 100;
 
@@ -178,7 +178,7 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 		        
 		        for (var i = 0; i < coordinates.length; i++) {
 		          if(coordinates[i].distance <= meterSelection) {
-		            
+    	            
     	            $scope.destinos[i]={
 					    name: coordinates[i].name,
 					    address: coordinates[i].address,
@@ -186,14 +186,34 @@ pincheGomaAppControllers.controller('MainCtrl', function ($scope, $http, $locati
 					    distance: coordinates[i].distance
 					};
 
+					$scope.noMatchesMessage = false;
+
 		            displayWay(currentPosition, coordinates);
+		            
+		            checkIfMore();
+		            
+		            if(moreDestinations === true) {
+		            	continue;
+		            }
+
+		            break;
 
 		          } else {
-	          		console.log("no matches");
-		          }
+		          	$scope.noMatchesMessage = true;
+		          }		          
 		        }
 		      };
 
+		      var checkIfMore = function () {
+		      	$scope.moreGomerias = true;
+		      };
+
+		      $scope.makePennis = function (selection) {
+		      	var moreDestinations = true;
+		      	$scope.makeWays(selection, moreDestinations);
+		      	$scope.noMatchesMessage = false;
+		      }
+		      
      	      var displayWay = function () {
 		        for (var i = 0; i < coordinates.length; i++) {
 		          var request = {

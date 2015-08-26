@@ -8,13 +8,15 @@
 			</br>
 		
 			<h4 class="outputHeader">Gomerías:</h4>
+			<span class="outputHeader" ng-if="moreGomerias" ng-model="select.block" ng-click="makePennis(select.block)">Ver todas las opciones: </span></br>
 			<ul class="example-animate-container">
 				<li class="animate-repeat" ng-repeat="destino in destinos | filter:q as results">
 					<a href="javascript:void(0)" class="gomeriaLink" ng-model="destino" ng-click="changeWay(destino)">{{destino.name}} </br>
 					{{destino.address}} </br>
 					Distancia: {{destino.distance}} metros apróx.</a>
 				</li>
-			</ul>			
+			</ul>
+			<span class="outputHeader" ng-if="noMatchesMessage">No hay gomerías dentro de la distancia seleccionada. Intenta con más cuadras.</span>			
 		</div>
 		<div id="map-canvas"></div>
 		<span class="showIt" ng-click="showIt()" ng-show="!displayed">Mostrar panel:</span>

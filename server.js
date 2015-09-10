@@ -14,7 +14,7 @@ app.get('public/gomerias.json', function(req, res) {
     res.send(req.body);
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/pinchegoma'));
 
 app.listen(3000);
 console.log('Listening on port 3000...');

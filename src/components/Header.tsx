@@ -3,11 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about/", label: "About" },
-  { href: "/projects/", label: "Projects" },
   { href: "/contact/", label: "Contact" },
 ];
 
@@ -16,15 +13,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
-      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
-        <Link
-          href="/"
-          className="text-xl font-bold text-gray-900 transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
-        >
-          GG
-        </Link>
-
-        <ul className="flex items-center gap-1 sm:gap-2">
+      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-center px-4 sm:px-6">
+        <ul className="flex items-center gap-3 sm:gap-4">
           {navItems.map((item) => {
             const isActive = pathname === item.href || pathname === item.href.slice(0, -1);
             return (

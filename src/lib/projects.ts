@@ -6,6 +6,7 @@ export interface FeaturedProject {
   customDescription?: string; // Override GitHub description
   featured?: boolean; // Highlight on homepage
   order?: number; // Display order
+  extraPills?: string[]; // Custom tech pills to render in the card
 
   // Enriched from GitHub API (populated at build time)
   githubData?: GitHubRepo;
@@ -24,7 +25,30 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "Interactive map-based application with real-time features",
     featured: true,
     order: 1,
+    extraPills: ["React", "Mapbox", "OpenGL"],
   },
+  {
+    repoName: "user-lens",
+    customDescription: "description",
+    featured: true,
+    order: 2,
+    extraPills: ["React"],
+  },
+  {
+    repoName: "films",
+    customDescription: "description",
+    featured: true,
+    order: 3,
+    extraPills: ["React"],
+  },
+  {
+    repoName: "crypto-dashboard",
+    customDescription: "description",
+    featured: true,
+    order: 4,
+    extraPills: ["Angular"],
+  },
+
   // Add more projects here:
   // {
   //   repoName: "your-repo-name",

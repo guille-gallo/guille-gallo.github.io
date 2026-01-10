@@ -45,12 +45,12 @@ export interface CVData {
 // ============================================
 
 export const cvData: CVData = {
-  name: "Guille Gallo",
-  title: "Senior Developer",
-  email: "your.email@example.com", // Update with your email
-  location: "Your Location", // Update with your location
-  bio: "Senior Developer with extensive experience building scalable web applications and leading development teams. Passionate about clean code, modern architectures, and delivering high-quality software solutions.",
-  linkedin: "https://linkedin.com/in/your-profile", // Update or remove
+  name: "Guillermo Gallo",
+  title: "Senior Software Developer",
+  email: "guille.gallo88@gmail.com", // Update with your email
+  location: "Barcelona, Spain",
+  bio: "I love what I do, I feel extremely fortunate about the fact that my job is one of the awesome things in my life. Welcome to my personal website.",
+  linkedin: "https://www.linkedin.com/in/guillermo-gallo-79481751/", // Update or remove
   github: "https://github.com/guille-gallo",
   website: "https://guille-gallo.github.io",
 

@@ -9,9 +9,11 @@ export function Footer() {
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            © {currentYear} {cvData.name}. All rights reserved.
-          </p>
+          <div className="text-center sm:text-left">
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+              Built with Next.js & Tailwind CSS
+            </p>
+          </div>
 
           <div className="flex items-center gap-4">
             <Link

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Star, Users, Code } from "lucide-react";
+import { GitBranch } from "lucide-react";
 import { GitHubStats } from "@/lib/github";
 
 interface GitHubStatsDisplayProps {
@@ -9,15 +9,10 @@ interface GitHubStatsDisplayProps {
 }
 
 export function GitHubStatsDisplay({ stats }: GitHubStatsDisplayProps) {
-  const statItems = [
-    { label: "Repositories", value: stats.totalRepos, icon: GitBranch },
-    { label: "Total Stars", value: stats.totalStars, icon: Star },
-    { label: "Followers", value: stats.followers, icon: Users },
-    { label: "Languages", value: stats.topLanguages.length, icon: Code },
-  ];
+  const statItems = [{ label: "Repositories", value: stats.totalRepos, icon: GitBranch }];
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:max-w-xs sm:grid-cols-1 sm:mx-auto">
       {statItems.map((item, index) => (
         <motion.div
           key={item.label}

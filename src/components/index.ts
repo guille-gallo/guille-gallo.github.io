@@ -5,3 +5,4 @@ export { GitHubStatsDisplay } from "./GitHubStatsDisplay";
 export { SkillsSection } from "./SkillsSection";
 export { ExperienceTimeline } from "./ExperienceTimeline";
 export { PageTransition } from "./PageTransition";
+export { FeaturedProjectsCarousel } from "./FeaturedProjectsCarousel";

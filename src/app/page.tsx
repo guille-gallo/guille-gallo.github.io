@@ -1,16 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Github } from "lucide-react";
-import { ProjectCard, GitHubStatsDisplay } from "@/components";
-import { getGitHubStats } from "@/lib/github";
+import { Download } from "lucide-react";
+import { FeaturedProjectsCarousel } from "@/components";
 import { getFeaturedProjects } from "@/lib/projects";
 import { cvData } from "@/lib/cv-data";
 
 export default async function HomePage() {
   // Fetch data at build time
-  const [stats, featuredProjects] = await Promise.all([
-    getGitHubStats(),
-    getFeaturedProjects(),
-  ]);
+  const featuredProjects = await getFeaturedProjects();
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
@@ -26,71 +22,26 @@ export default async function HomePage() {
           {cvData.bio}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/projects/"
+          <a
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/CV-Guillermo-Gallo.pdf`}
+            download
             className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
           >
-            View Projects
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href={cvData.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
-          >
-            <Github className="h-4 w-4" />
-            GitHub Profile
-          </Link>
+            <Download className="h-4 w-4" />
+            Download CV
+          </a>
         </div>
-      </section>
-
-      {/* GitHub Stats */}
-      <section className="mb-20">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
-          GitHub Activity
-        </h2>
-        <GitHubStatsDisplay stats={stats} />
-
-        {stats.topLanguages.length > 0 && (
-          <div className="mt-6 text-center">
-            <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-              Most used languages
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {stats.topLanguages.map((lang) => (
-                <span
-                  key={lang.name}
-                  className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                >
-                  {lang.name} ({lang.count})
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
       </section>
 
       {/* Featured Projects */}
       {featuredProjects.length > 0 && (
-        <section>
+        <section className="mx-auto max-w-3xl">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Featured Projects
+              My Github featured projects
             </h2>
-            <Link
-              href="/projects/"
-              className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-            >
-              View all
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.repoName} project={project} index={index} />
-            ))}
-          </div>
+          <FeaturedProjectsCarousel projects={featuredProjects} />
         </section>
       )}
     </div>

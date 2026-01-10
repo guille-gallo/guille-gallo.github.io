@@ -78,7 +78,12 @@ export default function ContactPage() {
         )}
 
         {/* Location */}
-        <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cvData.location)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+        >
           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
             <MapPin className="h-6 w-6 text-gray-700 dark:text-gray-300" />
           </div>
@@ -88,14 +93,7 @@ export default function ContactPage() {
               {cvData.location}
             </p>
           </div>
-        </div>
-      </div>
-
-      {/* Availability Note */}
-      <div className="mt-12 text-center">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Currently available for freelance projects and full-time opportunities.
-        </p>
+        </a>
       </div>
     </div>
   );

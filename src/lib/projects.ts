@@ -21,29 +21,29 @@ export interface FeaturedProject {
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    repoName: "mapland", // Example - replace with your actual repos
+    repoName: "mapland",
     customDescription: "Interactive map-based application with real-time features",
     featured: true,
     order: 1,
-    extraPills: ["React", "Mapbox", "OpenGL"],
+    extraPills: ["React", "Mapbox", "OpenGL", "React Native", "Supabase"],
   },
   {
     repoName: "user-lens",
-    customDescription: "description",
+    customDescription: "User Management Dashboard built to demonstrate enterprise-grade frontend architecture.",
     featured: true,
     order: 2,
-    extraPills: ["React"],
+    extraPills: ["React", "Zustand", "Redis", "Playwright"],
   },
   {
     repoName: "films",
-    customDescription: "description",
+    customDescription: "Movie browsing application featuring TMDB integration, global wishlist state management, and comprehensive testing strategies.",
     featured: true,
     order: 3,
-    extraPills: ["React"],
+    extraPills: ["React", "TanStack Query", "Zustand"],
   },
   {
     repoName: "crypto-dashboard",
-    customDescription: "description",
+    customDescription: "crypto-dashboard app",
     featured: true,
     order: 4,
     extraPills: ["Angular"],

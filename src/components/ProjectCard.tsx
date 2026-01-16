@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, GitFork, Github } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { FeaturedProject, getProjectDescription } from "@/lib/projects";
 
 interface ProjectCardProps {
@@ -37,10 +37,16 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             project.repoName
           )}
         </h3>
-        {githubData?.language && (
-          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-            {githubData.language}
-          </span>
+        {project.vercelUrl && (
+          <a
+            href={project.vercelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          >
+            <ExternalLink className="h-3 w-3" />
+            Live Demo
+          </a>
         )}
       </div>
 
@@ -51,8 +57,15 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
       {/* Topics & Link */}
       <div className="mt-auto flex items-start gap-2 pt-2">
-        {(githubData?.topics?.length || extraPills.length) > 0 && (
+        {(githubData?.language || githubData?.topics?.length || extraPills.length > 0) && (
           <div className="flex flex-wrap gap-1.5 pt-0.5">
+            {githubData?.language && (
+              <span
+                className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+              >
+                {githubData.language}
+              </span>
+            )}
             {githubData?.topics?.slice(0, 4).map((topic) => (
               <span
                 key={topic}
@@ -77,7 +90,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             href={githubData.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto shrink-0 rounded-lg p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+            className="ml-auto shrink-0 self-end rounded-lg p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
             aria-label="View on GitHub"
           >
             <Github className="h-4 w-4" />

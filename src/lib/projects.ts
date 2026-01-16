@@ -3,6 +3,7 @@ import { getRepoDetails, GitHubRepo } from "./github";
 export interface FeaturedProject {
   // Manual configuration
   repoName: string;
+  vercelUrl?: string; // Optional Vercel deployment URL
   customDescription?: string; // Override GitHub description
   featured?: boolean; // Highlight on homepage
   order?: number; // Display order
@@ -22,6 +23,7 @@ export interface FeaturedProject {
 export const featuredProjects: FeaturedProject[] = [
   {
     repoName: "mapland",
+    vercelUrl: "https://mapland.vercel.app",
     customDescription: "Interactive map-based application with real-time features",
     featured: true,
     order: 1,
@@ -29,6 +31,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     repoName: "user-lens",
+    vercelUrl: "https://user-lens.vercel.app",
     customDescription: "User Management Dashboard built to demonstrate enterprise-grade frontend architecture.",
     featured: true,
     order: 2,
@@ -36,17 +39,19 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     repoName: "films",
+    vercelUrl: "https://films-six-theta.vercel.app",
     customDescription: "Movie browsing application featuring TMDB integration, global wishlist state management, and comprehensive testing strategies.",
     featured: true,
     order: 3,
     extraPills: ["React", "TanStack Query", "Zustand"],
   },
   {
-    repoName: "crypto-dashboard",
-    customDescription: "crypto-dashboard app",
+    repoName: "flashmarket",
+    vercelUrl: "https://flashmarket.vercel.app",
+    customDescription: "Stock dashboard application with real-time data.",
     featured: true,
     order: 4,
-    extraPills: ["Angular"],
+    extraPills: ["Vue", "Pinia"],
   },
 
   // Add more projects here:

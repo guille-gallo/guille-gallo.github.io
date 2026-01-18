@@ -1,0 +1,87 @@
+User Lens is a Single Page Application (SPA) designed to provide a comprehensive interface for user data management and analysis. It serves as a centralized dashboard for performing CRUD (Create, Read, Update, Delete) operations while offering visualization of user demographics and metrics.
+
+## Functional Scope
+
+The application covers the following core functionalities:
+
+### User Management (CRUD)
+
+<Feature icon="user-plus" title="Create/Edit">
+  Validated forms for adding new users or updating existing profiles.
+</Feature>
+
+<Feature icon="search" title="Read">
+  Paginated data table with real-time search capabilities (filtering by name, email, or company).
+</Feature>
+
+<Feature icon="trash-2" title="Delete">
+  Secure removal with confirmation dialogs to prevent accidental data loss.
+</Feature>
+
+### Data Visualization
+
+<Feature icon="bar-chart-3" title="Metrics Overview">
+  A module that aggregates user data to display key indicators, such as total count, growth trends, and highest-valued companies.
+</Feature>
+
+### Navigation & UX
+
+<Feature icon="layout" title="Dedicated Detail Pages">
+  Individual user profiles with comprehensive information.
+</Feature>
+
+<Feature icon="monitor-smartphone" title="Responsive Layout">
+  Adapts seamlessly to different screen sizes.
+</Feature>
+
+<Feature icon="bell-ring" title="Feedback Systems">
+  Toast notifications for successful actions and error handling states.
+</Feature>
+
+## Technical Architecture
+
+The project is built using a modern, scalable frontend stack emphasizing type safety and performance.
+
+### Core Stack
+
+<Feature icon="code" title="Framework">
+  React 19 (leveraging hooks like `useDeferredValue` for optimization).
+</Feature>
+
+<Feature icon="type" title="Language">
+  TypeScript (strict type checking for interfaces and props).
+</Feature>
+
+<Feature icon="zap" title="Build Tool">
+  Vite (fast HMR and optimized production builds).
+</Feature>
+
+### State Management
+
+<Feature icon="database" title="Zustand">
+  Utilized for global state management (User Store, Metrics Store), handling asynchronous data fetching and state updates outside the component tree.
+</Feature>
+
+### Styling System
+
+<Feature icon="palette" title="SCSS Modules">
+  Component-scoped styling using BEM methodology.
+</Feature>
+
+<Feature icon="settings" title="Design Tokens">
+  Centralized variables for colors, spacing, and typography to ensure consistency.
+</Feature>
+
+### Quality Assurance
+
+<Feature icon="check-circle" title="Unit Testing">
+  Jest and React Testing Library for component implementation validation.
+</Feature>
+
+<Feature icon="play-circle" title="E2E Testing">
+  Playwright for ensuring critical user journeys functionality.
+</Feature>
+
+<Feature icon="server" title="Mock Backend">
+  JSON Server handles REST API simulation for development.
+</Feature>

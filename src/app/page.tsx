@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Download } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import { FeaturedProjectsCarousel } from "@/components";
 import { getFeaturedProjects } from "@/lib/projects";
 import { cvData } from "@/lib/cv-data";
@@ -36,10 +36,24 @@ export default async function HomePage() {
       {/* Featured Projects */}
       {featuredProjects.length > 0 && (
         <section className="mx-auto max-w-3xl">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              My Github featured projects
-            </h2>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <Link
+                  href="/github-featured-projects/"
+                  className="hover:text-gray-700 dark:hover:text-gray-200"
+                >
+                  GitHub featured projects
+                </Link>
+              </h2>
+              <Link
+                href="/github-featured-projects/"
+                className="inline-flex items-center rounded-full border border-gray-200 p-2 text-gray-700 transition hover:bg-gray-100 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-900"
+                aria-label="Browse GitHub featured projects"
+              >
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
           <FeaturedProjectsCarousel projects={featuredProjects} />
         </section>

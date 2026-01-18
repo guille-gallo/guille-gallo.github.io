@@ -1,0 +1,95 @@
+Mapland is a comprehensive location management platform designed to help organizations track field teams and manage geographic zones in real-time. It connects a central command center (Backoffice) with a mobile workforce, ensuring safety and operational efficiency through interactive maps, automated alerts, and direct communication.
+
+## What different users can do with the system
+
+### 📱 For Mobile App Users (Field Team)
+
+The mobile app is a personal safety and operational assistant for users in the field.
+
+<Feature icon="map-pin" title="See Where You Stand">
+  Users see their own location on a map along with all active zones defined by the command center.
+  
+  **Example:** A user can see they are approaching a "Danger Zone" marked in red.
+</Feature>
+
+<Feature icon="bell" title="Get Instant Alerts">
+  The app constantly checks the user's location against these zones (geofencing) and sends alerts immediately upon entering or exiting.
+  
+  **Real Case:** If a user walks into a restricted area, their phone buzzes and shows a warning alert (e.g., "You have entered a Danger Zone").
+</Feature>
+
+<Feature icon="message-circle" title="Stay Connected">
+  Users can chat directly with the operators in the backoffice.
+  
+  **Real Case:** A user can message the command center to report an issue on the ground.
+</Feature>
+
+<Feature icon="radio" title="Be Visible">
+  The app broadcasts the user's location and status (e.g., 'Active', 'SOS') to the command center in real-time.
+</Feature>
+
+### 🖥️ For Backoffice Operators (Public Map View)
+
+The Public Map View is the monitoring dashboard for day-to-day operations.
+
+<Feature icon="map" title="Real-Time Tracking">
+  Operators see a live map populated with all active field users.
+  
+  **Real Case:** An operator watches a user's icon move across the map in real-time as they perform their duties.
+</Feature>
+
+<Feature icon="user-check" title="Monitor User Status">
+  Operators can click on any user to see their details, including their current status, device type, and when they were last active.
+  
+  **Real Case:** An operator notices a user has gone "Offline" or is in an "SOS" state and can take action.
+</Feature>
+
+<Feature icon="message-square" title="Direct Communication">
+  Operators can open a chat panel with any specific user to send instructions or ask for updates.
+  
+  **Real Case:** An operator messages a user to warn them about a weather event near their location.
+</Feature>
+
+<Feature icon="info" title="Zone Information">
+  Operators can click on any zone to view its metadata, such as its name, type, and specific instructions attached to it.
+</Feature>
+
+### ✏️ For Administrators (Backoffice Editor)
+
+The Editor is a powerful tool for defining the rules of the map.
+
+<Feature icon="pen-tool" title="Create & Edit Zones">
+  Administrators can draw complex shapes on the map to define different types of zones:
+  
+  - 🔴 **Danger Zones:** Areas users should avoid.
+  - 🟢 **Suggested Zones:** Areas where users are encouraged to be.
+  - 🔵 **Boundary Zones:** Defines the overall operational area; the system visually "masks" everything outside this boundary to focus attention on the active area.
+</Feature>
+
+<Feature icon="file-text" title="Custom Messages">
+  Admins can attach specific messages to zones.
+  
+  **Real Case:** An admin creates a zone around a construction site and adds the message "Hard hat required area." This message is what appears on the user's phone when they enter.
+</Feature>
+
+<Feature icon="crosshair" title="Precision Tools">
+  The editor provides advanced drawing tools (Draw, Modify) to fine-tune zone shapes, ensuring alerts trigger exactly where intended.
+</Feature>
+
+### 🔄 How It All Works Together
+
+<Feature icon="clipboard-list" title="Plan">
+  An administrator uses the Editor to draw a "Danger Zone" around a hazardous area and saves it.
+</Feature>
+
+<Feature icon="refresh-cw" title="Sync">
+  This new zone is instantly saved to the database (Supabase) and becomes available to everyone.
+</Feature>
+
+<Feature icon="monitor" title="Monitor">
+  The Mobile App downloads the new zone. When a field user walks into it, their phone alerts them immediately.
+</Feature>
+
+<Feature icon="zap" title="React">
+  Simultaneously, the Map View in the backoffice shows the user entering the zone. The operator sees this and sends a chat message to confirm the user is safe.
+</Feature>

@@ -1,0 +1,109 @@
+## Project Overview
+
+Films is a modern React 19 application designed to browse movies using The Movie Database (TMDB) API. It allows users to discover popular, top-rated, and upcoming films, view detailed information, and manage a persistent personal wishlist. The project prioritizes performance, accessibility (a11y), and maintainability.
+
+## Functional Description
+
+The application is structured around a central browsing experience with specific user flows:
+
+### Movie Discovery (Homepage)
+
+<Feature icon="film" title="Organized Carousels">
+  Displays movies categorized by Popular, Top Rated, and Upcoming.
+</Feature>
+
+<Feature icon="mouse-pointer-click" title="Interactive Cards">
+  Navigate to a detailed view of any movie with a single click.
+</Feature>
+
+### Detailed Movie View
+
+<Feature icon="info" title="In-Depth Information">
+  Provides comprehensive details about a specific film (handled by MovieDetail page).
+</Feature>
+
+<Feature icon="heart" title="Wishlist Toggle">
+  Allows users to add or remove the specific movie from their wishlist.
+</Feature>
+
+### Wishlist Management
+
+<Feature icon="bookmark" title="Dedicated Wishlist Page">
+  View all your saved movies in one place.
+</Feature>
+
+<Feature icon="refresh-ccw" title="Cross-tab Synchronization">
+  If you update your wishlist in one tab, other open tabs update automatically without a refresh.
+</Feature>
+
+<Feature icon="save" title="Persistent Storage">
+  Data is saved locally, so the wishlist survives browser refreshes.
+</Feature>
+
+### Navigation & UX
+
+<Feature icon="loader" title="Lazy Loading">
+  Pages are loaded on demand to speed up initial load time.
+</Feature>
+
+<Feature icon="accessibility" title="Accessibility">
+  Includes "Skip to Main Content" links, ARIA labels, and semantic HTML to support screen readers and keyboard navigation.
+</Feature>
+
+<Feature icon="alert-circle" title="Error Handling">
+  Custom "Not Found" pages and specific API error handling (Network Error, Rate Limited).
+</Feature>
+
+## Technical Architecture
+
+The project uses a robust, modern stack centered around React ecosystem best practices.
+
+### Core Stack
+
+<Feature icon="code-2" title="Framework">
+  React 19 with TypeScript for strict type safety.
+</Feature>
+
+<Feature icon="zap" title="Build Tool">
+  Vite, configured for fast development and optimized production builds.
+</Feature>
+
+<Feature icon="palette" title="Styling">
+  SCSS (Sass) using the BEM (Block Element Modifier) naming convention for modular and maintainable styles.
+</Feature>
+
+### State Management & Data Fetching
+
+<Feature icon="cloud" title="Server State (API Data)">
+  TanStack Query (React Query v5) handles caching (5-minute stale time), automatic retries, and loading/error states. Abstracts data fetching logic into custom hooks like `useMovies` and `useMovieDetails`.
+</Feature>
+
+<Feature icon="database" title="Client State (Wishlist)">
+  Zustand is used for global state management with persist middleware to save the wishlist to localStorage. Custom logic handles storage events to sync state across browser tabs.
+</Feature>
+
+### Routing & Navigation
+
+<Feature icon="route" title="React Router DOM">
+  React Router DOM (v7) with React.lazy and Suspense to code-split route components, reducing the initial bundle size.
+</Feature>
+
+### API Layer
+
+<Feature icon="server" title="Service Pattern">
+  All API calls are encapsulated in a TMDBService class. Native fetch API is used with a custom wrapper that handles authentication and normalizes HTTP errors.
+</Feature>
+
+### Testing Strategy
+
+<Feature icon="check-square" title="Unit Testing">
+  Jest with React Testing Library for component and utility logic.
+</Feature>
+
+<Feature icon="test-tube" title="Functional/Integration Testing">
+  Vitest for running functional tests and end-to-end flows.
+</Feature>
+
+### Key Dependencies
+
+React, TypeScript, Vite, Sass, Zustand, @tanstack/react-query, react-router-dom, Vitest, Jest.

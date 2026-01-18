@@ -1,0 +1,100 @@
+Flashmarket is a real-time cryptocurrency dashboard designed to track market data for top crypto pairs using the Binance WebSocket API. It provides users with live price updates, trade history, and interactive charts in a high-performance Vue 3 application.
+
+## Functional Perspective
+
+### Purpose
+
+The application serves as a monitoring tool for crypto traders or enthusiasts to keep track of live market movements without needing a full exchange account.
+
+### Key Features
+
+<Feature icon="activity" title="Real-time Dashboard">
+  A central view displaying live market data with instant updates.
+</Feature>
+
+<Feature icon="trending-up" title="Ticker Tape">
+  A scrolling component at the top showing quick price updates for all tracked assets.
+</Feature>
+
+<Feature icon="line-chart" title="Live Charting">
+  An interactive line chart that updates in real-time as trades occur. Visualizes the price trend for the selected cryptocurrency, aggregating trades by the second for clarity.
+</Feature>
+
+<Feature icon="info" title="Detailed Asset View">
+  When a specific coin is selected (e.g., BTC/USDT), the dashboard shows:
+  
+  - Current Price
+  - 24h Price Change (with color coding for positive/negative movement)
+  - Trading Volume
+  - 24h High/Low stats
+</Feature>
+
+<Feature icon="grid-3x3" title="Market Grid">
+  A quick-view grid displaying all tracked pairs to allow easy switching between assets.
+</Feature>
+
+<Feature icon="wifi" title="Connection Management">
+  A status indicator showing the WebSocket connection state, with the ability to manually connect or disconnect.
+</Feature>
+
+<Feature icon="coins" title="Supported Assets">
+  Tracks 8 major pairings: BTC, ETH, BNB, SOL, XRP, ADA, DOGE, and AVAX (all against USDT).
+</Feature>
+
+## Technical Perspective
+
+### Tech Stack
+
+<Feature icon="code-2" title="Framework">
+  Vue 3 (using Composition API and `<script setup>`).
+</Feature>
+
+<Feature icon="type" title="Language">
+  TypeScript for type-safe development.
+</Feature>
+
+<Feature icon="zap" title="Build Tool">
+  Vite for fast development and optimized builds.
+</Feature>
+
+<Feature icon="database" title="State Management">
+  Pinia for reactive global state.
+</Feature>
+
+<Feature icon="bar-chart-2" title="Visualization">
+  lightweight-charts (by TradingView) for rendering high-performance financial charts.
+</Feature>
+
+<Feature icon="wrench" title="Utilities">
+  VueUse (@vueuse/core) for composable utilities.
+</Feature>
+
+### Architecture & Implementation Details
+
+#### Data Layer
+
+<Feature icon="rss" title="WebSocket Service">
+  A dedicated composable `useCryptoWebSocket` connects to `wss://stream.binance.com:9443`. It subscribes to multi-stream channels for both @ticker (24h stats) and @trade (live execution) events.
+</Feature>
+
+<Feature icon="cpu" title="State Optimization">
+  Uses `shallowRef` and Map structures in Pinia instead of deep reactivity arrays/objects. This crucial optimization handles the high-throughput frequency of crypto market updates without freezing the UI.
+</Feature>
+
+<Feature icon="trash" title="Data Pruning">
+  To prevent memory leaks, trade history keeps only the last minute or a maximum of 500 trades per symbol, with periodic interval pruning of old data.
+</Feature>
+
+#### UI Components
+
+<Feature icon="layout-dashboard" title="DashboardPage.vue">
+  The main orchestrator that manages the WebSocket connection lifecycle and passes data to child components.
+</Feature>
+
+<Feature icon="trending-up" title="PriceChart.vue">
+  Wraps the lightweight-charts library. Uses `markRaw` to exclude the chart instance from Vue's reactivity system (performance optimization) and aggregates high-frequency trade data into 1-second candles to smooth out rendering.
+</Feature>
+
+<Feature icon="server" title="BinanceService">
+  Handles the protocol logic, parsing raw WebSocket messages into typed `TickerData` and `TradeData` interfaces.
+</Feature>

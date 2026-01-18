@@ -6,3 +6,4 @@ export { SkillsSection } from "./SkillsSection";
 export { ExperienceTimeline } from "./ExperienceTimeline";
 export { PageTransition } from "./PageTransition";
 export { FeaturedProjectsCarousel } from "./FeaturedProjectsCarousel";
+export { FeaturedProjectsDetails } from "./FeaturedProjectsDetails";

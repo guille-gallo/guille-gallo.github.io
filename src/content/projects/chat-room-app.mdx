@@ -1,0 +1,55 @@
+Chat Room App is a real-time chat application that lets users create and join chat rooms with instant messaging, Google OAuth sign-in, live online presence tracking, and ephemeral messages — built with React 19, Supabase Realtime, and Vite.
+
+## Functional Perspective
+
+### Purpose
+
+A lightweight, real-time group chat experience that requires no account setup beyond a Google sign-in, focusing on ephemeral conversations and live presence awareness.
+
+### Key Features
+
+<Feature icon="message-circle" title="Real-time Messaging">
+  Instant message delivery across all participants using Supabase Realtime broadcast channels — no polling, no delays.
+</Feature>
+
+<Feature icon="log-in" title="Google Sign-in">
+  One-click authentication via Google OAuth powered by Supabase Auth, removing friction from the onboarding flow.
+</Feature>
+
+<Feature icon="users" title="Online Presence">
+  Live presence indicators show who is currently in the room, updating in real-time as users join or leave.
+</Feature>
+
+<Feature icon="clock" title="Ephemeral Messages">
+  Messages are transient by design — conversations stay lightweight and in-the-moment without persistent storage overhead.
+</Feature>
+
+## Technical Perspective
+
+### Tech Stack
+
+<Feature icon="code-2" title="Framework">
+  React 19 with TypeScript — leveraging custom hooks for auth, chat room state, and message input logic.
+</Feature>
+
+<Feature icon="zap" title="Build Tool">
+  Vite for fast HMR during development and optimized production builds.
+</Feature>
+
+<Feature icon="database" title="Backend">
+  Supabase for authentication (Google OAuth) and Realtime (broadcast + presence channels) — no custom server required.
+</Feature>
+
+<Feature icon="rocket" title="Deployment">
+  Deployed to Vercel via GitHub Actions CI/CD with automatic deploys on push to main.
+</Feature>
+
+### Architecture
+
+<Feature icon="layers" title="Project Structure">
+  Clean separation of concerns with presentational components, custom hooks (`useAuth`, `useChatRoom`, `useMessageInput`), and a dedicated lib layer for the Supabase client.
+</Feature>
+
+<Feature icon="wifi" title="Realtime Channels">
+  Uses Supabase Realtime broadcast for message distribution and presence channels for tracking connected users — all over WebSocket connections.
+</Feature>

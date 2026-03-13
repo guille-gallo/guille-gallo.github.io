@@ -76,6 +76,18 @@ export const featuredProjects: FeaturedProject[] = [
     order: 4,
     extraPills: ["Vue", "Pinia"],
   },
+  {
+    repoName: "chat-room-app",
+    vercelUrl: "",
+    customDescription: "Real-time chat rooms with Google sign-in, online presence, and ephemeral messages.",
+    mainDescription:
+      "Chat Room App delivers real-time group chat with Google OAuth sign-in, live online presence indicators, and ephemeral messaging — powered by Supabase Realtime broadcast and presence channels.",
+    demoVideoUrl: "",
+    screenshotUrls: [],
+    featured: true,
+    order: 5,
+    extraPills: ["React", "TypeScript", "Supabase", "Vite"],
+  },
 
   // Add more projects here:
   // {

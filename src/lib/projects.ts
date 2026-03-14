@@ -88,6 +88,19 @@ export const featuredProjects: FeaturedProject[] = [
     order: 5,
     extraPills: ["React", "TypeScript", "Supabase", "Vite"],
   },
+  {
+    repoName: "solid-dashboard",
+    vercelUrl: "https://solid-dashboard-teal.vercel.app",
+    customDescription:
+      "A hands-on Solid.js learning lab exploring reactivity primitives, fine-grained DOM updates, and advanced patterns.",
+    mainDescription:
+      "Solid Dashboard is an interactive learning lab built with Solid.js, covering reactivity primitives, control flow components, state management with Context and createStore, code splitting, and the snapshot pattern for paginated data — all without a virtual DOM.",
+    demoVideoUrl: "",
+    screenshotUrls: [],
+    featured: true,
+    order: 6,
+    extraPills: ["Solid.js", "TypeScript", "Kobalte", "Tailwind CSS", "Vite"],
+  },
 
   // Add more projects here:
   // {

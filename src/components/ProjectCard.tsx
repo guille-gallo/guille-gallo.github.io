@@ -12,7 +12,13 @@ interface ProjectCardProps {
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const description = getProjectDescription(project);
   const githubData = project.githubData;
-  const extraPills = project.extraPills ?? [];
+  const shownFromGitHub = new Set([
+    ...(githubData?.language ? [githubData.language.toLowerCase()] : []),
+    ...(githubData?.topics?.slice(0, 4).map((t) => t.toLowerCase()) ?? []),
+  ]);
+  const extraPills = (project.extraPills ?? []).filter(
+    (pill) => !shownFromGitHub.has(pill.toLowerCase())
+  );
 
   return (
     <motion.article

@@ -78,7 +78,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     repoName: "chat-room-app",
-    vercelUrl: "",
+    vercelUrl: "https://chat-room-app-theta.vercel.app",
     customDescription: "Real-time chat rooms with Google sign-in, online presence, and ephemeral messages.",
     mainDescription:
       "Chat Room App delivers real-time group chat with Google OAuth sign-in, live online presence indicators, and ephemeral messaging — powered by Supabase Realtime broadcast and presence channels.",

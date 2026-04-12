@@ -16,6 +16,7 @@ const projectContentLoaders: Record<string, React.ComponentType> = {
   films: dynamic(() => import("@/content/projects/films.mdx")),
   flashmarket: dynamic(() => import("@/content/projects/flashmarket.mdx")),
   "chat-room-app": dynamic(() => import("@/content/projects/chat-room-app.mdx")),
+  slidedude: dynamic(() => import("@/content/projects/slidedude.mdx")),
 };
 
 function getProjectContentComponent(repoName: string): React.ComponentType | null {

@@ -6,6 +6,7 @@ const projectContent: Record<string, () => Promise<{ default: React.ComponentTyp
   "user-lens": () => import("@/content/projects/user-lens.mdx"),
   films: () => import("@/content/projects/films.mdx"),
   flashmarket: () => import("@/content/projects/flashmarket.mdx"),
+  slidedude: () => import("@/content/projects/slidedude.mdx"),
 };
 
 export async function getProjectContent(repoName: string): Promise<ReactElement | null> {

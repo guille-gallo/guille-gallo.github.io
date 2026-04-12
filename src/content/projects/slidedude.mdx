@@ -1,0 +1,55 @@
+Slidedude is an animated presentation tool for technical talks, combining code slides, content slides, and smooth code-to-code transitions in a browser-based editor.
+
+## Functional Perspective
+
+### Purpose
+
+A focused presentation workspace for building polished technical demos where code changes are part of the story, not just static screenshots.
+
+### Key Features
+
+<Feature icon="sparkles" title="Animated Code Transitions">
+  Uses Shiki Magic Move to morph code between slides, making refactors, step-by-step explanations, and live walkthroughs feel smooth and intentional instead of jumpy.
+</Feature>
+
+<Feature icon="file-code" title="Syntax-Highlighted Code Slides">
+  Supports technical slides with highlighted TypeScript, JavaScript, HTML, CSS, JSON, Python, Markdown, JSX, and TSX.
+</Feature>
+
+<Feature icon="layout-template" title="Content Slides with Media">
+  Mixes code with regular presentation slides, including rich text and image support, so the talk can alternate between explanation and implementation.
+</Feature>
+
+<Feature icon="move" title="Drag-and-Drop Slide Management">
+  Reorder slides with keyboard-accessible drag and drop for fast deck iteration while keeping the editing workflow fluid.
+</Feature>
+
+## Technical Perspective
+
+### Tech Stack
+
+<Feature icon="code-2" title="Framework">
+  Next.js 16 with the App Router and React 19, giving the app a modern full-stack foundation for editing, auth, and presentation flows.
+</Feature>
+
+<Feature icon="highlighter" title="Code Rendering">
+  Shiki and Shiki Magic Move power syntax highlighting and animated code morphing — the core interaction that makes the app feel presentation-native for developers.
+</Feature>
+
+<Feature icon="shield-check" title="Authentication">
+  Auth.js v5 with Google OAuth protects the app and supports email allowlists for controlled access.
+</Feature>
+
+<Feature icon="database" title="Persistence">
+  Upstash Redis stores presentations in the cloud, with local fallback behavior to keep the editor resilient.
+</Feature>
+
+### Architecture
+
+<Feature icon="layers" title="Editor + Presentation Flow">
+  The app separates editing workflows from fullscreen presentation mode, so the same deck can move cleanly from authoring to delivery.
+</Feature>
+
+<Feature icon="wand-2" title="Interaction Layer">
+  Zustand manages editor state, Framer Motion handles interface transitions, and dnd-kit powers accessible drag-and-drop interactions.
+</Feature>

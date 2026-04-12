@@ -103,15 +103,16 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     repoName: "slidedude",
-    vercelUrl: "",
-    customDescription: "Interactive slide editor and presentation app.",
+    vercelUrl: "https://slidedude.vercel.app/",
+    customDescription:
+      "Animated presentation builder for technical talks with syntax-highlighted code slides, smooth code transitions, content slides, and cloud-backed editing.",
     mainDescription:
-      "Slidedude is an interactive slide editor and presentation app focused on creating, organizing, and presenting slides in a streamlined browser-based workflow.",
+      "Slidedude is a browser-based presentation app for technical talks, combining code editing, rich content slides, drag-and-drop deck management, and Shiki Magic Move transitions into a polished workflow for authoring and presenting live demos.",
     demoVideoUrl: "",
     screenshotUrls: [],
     featured: true,
     order: 7,
-    extraPills: [],
+    extraPills: ["Shiki", "Shiki Magic Move", "Auth.js", "Upstash Redis", "Framer Motion", "dnd-kit"],
   },
 
   // Add more projects here:

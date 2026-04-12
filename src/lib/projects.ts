@@ -101,6 +101,18 @@ export const featuredProjects: FeaturedProject[] = [
     order: 6,
     extraPills: ["Solid.js", "TypeScript", "Kobalte", "Tailwind CSS", "Vite"],
   },
+  {
+    repoName: "slidedude",
+    vercelUrl: "",
+    customDescription: "Interactive slide editor and presentation app.",
+    mainDescription:
+      "Slidedude is an interactive slide editor and presentation app focused on creating, organizing, and presenting slides in a streamlined browser-based workflow.",
+    demoVideoUrl: "",
+    screenshotUrls: [],
+    featured: true,
+    order: 7,
+    extraPills: [],
+  },
 
   // Add more projects here:
   // {

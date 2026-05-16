@@ -35,22 +35,22 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
         ))}
       </div>
 
-      <div className="mt-2 flex items-center justify-center gap-3">
+      <div className="mt-4 flex items-center justify-center gap-3">
         <button
           type="button"
           onClick={() => scrollBy(-scrollAmount)}
-          className="rounded-full bg-white/90 p-3 text-gray-800 shadow-md ring-1 ring-gray-200 backdrop-blur transition hover:bg-white dark:bg-gray-900/90 dark:text-gray-100 dark:ring-gray-700"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-whisper-border bg-surface text-heading shadow-notion transition-all hover:-translate-y-0.5 hover:border-notion-blue hover:bg-notion-blue-tint hover:text-notion-blue-text active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-notion-blue-focus"
           aria-label="Scroll left"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           type="button"
           onClick={() => scrollBy(scrollAmount)}
-          className="rounded-full bg-white/90 p-3 text-gray-800 shadow-md ring-1 ring-gray-200 backdrop-blur transition hover:bg-white dark:bg-gray-900/90 dark:text-gray-100 dark:ring-gray-700"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-whisper-border bg-surface text-heading shadow-notion transition-all hover:-translate-y-0.5 hover:border-notion-blue hover:bg-notion-blue-tint hover:text-notion-blue-text active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-notion-blue-focus"
           aria-label="Scroll right"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
     </div>

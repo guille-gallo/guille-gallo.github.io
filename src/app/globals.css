@@ -1,28 +1,127 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------- */
+/* Notion-inspired palette (see DESIGN.md)                              */
+/* Warm near-black on warm whites, whisper borders, multi-layer shadow. */
+/* CSS variables auto-flip in dark mode via prefers-color-scheme.       */
+/* -------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --color-canvas: #ffffff;            /* page background */
+  --color-warm-white: #f6f5f4;        /* alternating section background */
+  --color-surface: #ffffff;           /* cards, popovers */
+  --color-warm-dark: #31302e;         /* dark accent surface */
+
+  /* Text */
+  --color-heading: rgba(0, 0, 0, 0.95);   /* near-black, not pure */
+  --color-body: rgba(0, 0, 0, 0.95);
+  --color-muted: #615d59;             /* warm gray 500 */
+  --color-subtle: #a39e98;            /* warm gray 300 */
+
+  /* Borders */
+  --color-whisper-border: rgba(0, 0, 0, 0.1);
+  --color-input-border: #dddddd;
+
+  /* Accent (the only saturated color) */
+  --color-notion-blue: #0075de;
+  --color-notion-blue-hover: #005bab;
+  --color-notion-blue-focus: #097fe8;
+  --color-notion-blue-tint: #f2f9ff;
+  --color-notion-blue-text: #097fe8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-canvas: var(--color-canvas);
+  --color-warm-white: var(--color-warm-white);
+  --color-surface: var(--color-surface);
+  --color-warm-dark: var(--color-warm-dark);
+  --color-heading: var(--color-heading);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-subtle: var(--color-subtle);
+  --color-whisper-border: var(--color-whisper-border);
+  --color-input-border: var(--color-input-border);
+  --color-notion-blue: var(--color-notion-blue);
+  --color-notion-blue-hover: var(--color-notion-blue-hover);
+  --color-notion-blue-focus: var(--color-notion-blue-focus);
+  --color-notion-blue-tint: var(--color-notion-blue-tint);
+  --color-notion-blue-text: var(--color-notion-blue-text);
+  --font-sans: var(--font-inter), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-canvas: #1f1e1c;          /* warm near-black canvas */
+    --color-warm-white: #2a2826;      /* warm dark alternation surface */
+    --color-surface: #2a2826;
+    --color-warm-dark: #f6f5f4;
+    --color-heading: rgba(255, 255, 255, 0.95);
+    --color-body: rgba(255, 255, 255, 0.92);
+    --color-muted: #a39e98;
+    --color-subtle: #615d59;
+    --color-whisper-border: rgba(255, 255, 255, 0.12);
+    --color-input-border: rgba(255, 255, 255, 0.18);
+    --color-notion-blue: #62aef0;     /* lighter for AA on dark */
+    --color-notion-blue-hover: #97c8f5;
+    --color-notion-blue-tint: rgba(98, 174, 240, 0.16);
+    --color-notion-blue-text: #97c8f5;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-body);
+  font-family: var(--font-inter), var(--font-geist-sans), -apple-system,
+    BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: "lnum", "locl";
+  font-weight: 400;
+}
+
+/* Notion's signature: heavy headings with aggressive negative tracking */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h1 {
+  letter-spacing: -0.033em; /* approximates -2.125px @ 64px */
+}
+
+/* Notion's barely-there 4-layer card shadow */
+.shadow-notion {
+  box-shadow:
+    rgba(0, 0, 0, 0.04) 0px 4px 18px,
+    rgba(0, 0, 0, 0.027) 0px 2.025px 7.84688px,
+    rgba(0, 0, 0, 0.02) 0px 0.8px 2.925px,
+    rgba(0, 0, 0, 0.01) 0px 0.175px 1.04062px;
+}
+
+.shadow-notion-deep {
+  box-shadow:
+    rgba(0, 0, 0, 0.01) 0px 1px 3px,
+    rgba(0, 0, 0, 0.02) 0px 3px 7px,
+    rgba(0, 0, 0, 0.02) 0px 7px 15px,
+    rgba(0, 0, 0, 0.04) 0px 14px 28px,
+    rgba(0, 0, 0, 0.05) 0px 23px 52px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shadow-notion {
+    box-shadow:
+      rgba(0, 0, 0, 0.4) 0px 4px 18px,
+      rgba(0, 0, 0, 0.3) 0px 2px 8px;
+  }
+  .shadow-notion-deep {
+    box-shadow:
+      rgba(0, 0, 0, 0.5) 0px 14px 28px,
+      rgba(0, 0, 0, 0.4) 0px 23px 52px;
+  }
 }
 
 .scrollbar-hide {

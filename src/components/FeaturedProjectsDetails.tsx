@@ -55,8 +55,8 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
   return (
     <div className="mt-10 grid gap-8 md:grid-cols-[220px_minmax(0,1fr)]">
       <aside className="md:sticky md:top-24 md:self-start">
-        <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+        <div className="rounded-xl border border-whisper-border bg-surface p-4 shadow-sm">
+          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-subtle">
             Browse projects
           </h3>
           <nav className="space-y-2">
@@ -70,8 +70,8 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                   onClick={() => setActiveProjectId(projectId)}
                   className={`block w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition ${
                     isActive
-                      ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                      ? "bg-warm-white text-heading"
+                      : "text-muted hover:bg-warm-white hover:text-heading"
                   }`}
                 >
                   {project.repoName}
@@ -96,17 +96,17 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
             <article
               key={activeProject.repoName}
               id={projectId}
-              className="relative scroll-mt-28 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+              className="relative scroll-mt-28 rounded-2xl border border-whisper-border bg-surface p-6 shadow-sm"
             >
               <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-heading">
                     {githubData?.html_url ? (
                       <a
                         href={githubData.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400"
+                        className="inline-flex items-center gap-2 hover:text-notion-blue"
                       >
                         {activeProject.repoName}
                         <Github className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                     {ContentComponent ? (
                       <ContentComponent />
                     ) : (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-muted">
                         {fallbackDescription}
                       </p>
                     )}
@@ -135,7 +135,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                     href={liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                    className="inline-flex items-center gap-1 rounded-full bg-warm-white px-3 py-1 text-xs font-medium text-muted transition hover:bg-warm-white"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
                     Live demo
@@ -144,10 +144,10 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
               )}
 
               <div className="mt-6">
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-subtle">
                   Demo video
                 </h4>
-                <div className="mt-3 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+                <div className="mt-3 overflow-hidden rounded-xl border border-whisper-border bg-warm-white">
                   {demoVideoUrl ? (
                     <div className="aspect-video w-full">
                       <iframe
@@ -159,7 +159,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                       />
                     </div>
                   ) : (
-                    <div className="flex aspect-video items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex aspect-video items-center justify-center text-sm text-subtle">
                       Demo video coming soon
                     </div>
                   )}
@@ -167,7 +167,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
               </div>
 
               <div className="mt-6">
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-subtle">
                   Screenshot gallery
                 </h4>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -175,7 +175,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                     screenshots.slice(0, 4).map((src, index) => (
                       <div
                         key={`${activeProject.repoName}-shot-${index}`}
-                        className="overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
+                        className="overflow-hidden rounded-lg border border-whisper-border bg-warm-white"
                       >
                         <img
                           src={src}
@@ -190,7 +190,7 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                       {Array.from({ length: 2 }).map((_, index) => (
                         <div
                           key={`${activeProject.repoName}-placeholder-${index}`}
-                          className="flex h-40 items-center justify-center rounded-lg border border-dashed border-gray-200 bg-gray-50 text-xs uppercase tracking-wide text-gray-400 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-500"
+                          className="flex h-40 items-center justify-center rounded-lg border border-dashed border-whisper-border bg-warm-white text-xs uppercase tracking-wide text-subtle"
                         >
                           Screenshot placeholder
                         </div>

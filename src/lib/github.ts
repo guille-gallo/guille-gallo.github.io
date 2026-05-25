@@ -33,23 +33,37 @@ export interface GitHubStats {
   topLanguages: { name: string; count: number }[];
 }
 
+const FETCH_TIMEOUT_MS = 10_000;
+
 async function fetchWithAuth(url: string) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+
   const headers: HeadersInit = {
     Accept: "application/vnd.github.v3+json",
   };
 
-  // Use token if available (for higher rate limits)
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
 
-  const response = await fetch(url, { headers, next: { revalidate: false } });
+  try {
+    const response = await fetch(url, {
+      headers,
+      signal: controller.signal,
+      next: { revalidate: false },
+    });
 
-  if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    clearTimeout(timer);
+
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    }
+
+    return response.json();
+  } finally {
+    clearTimeout(timer);
   }
-
-  return response.json();
 }
 
 export async function getGitHubUser(): Promise<GitHubUser> {

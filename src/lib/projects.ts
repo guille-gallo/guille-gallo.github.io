@@ -129,15 +129,6 @@ export const featuredProjects: FeaturedProject[] = [
 // ============================================
 
 export async function getEnrichedProjects(): Promise<FeaturedProject[]> {
-  if (process.env.NODE_ENV === "development") {
-    return featuredProjects.sort((a, b) => {
-      if (a.order !== undefined && b.order !== undefined) return a.order - b.order;
-      if (a.order !== undefined) return -1;
-      if (b.order !== undefined) return 1;
-      return 0;
-    });
-  }
-
   const enrichedProjects = await Promise.all(
     featuredProjects.map(async (project) => {
       try {

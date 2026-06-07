@@ -52,8 +52,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        <div className="ambient" aria-hidden="true">
+          <div className="ambient__blob ambient__blob--1" />
+          <div className="ambient__blob ambient__blob--2" />
+          <div className="ambient__blob ambient__blob--3" />
+        </div>
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-grow">{children}</main>

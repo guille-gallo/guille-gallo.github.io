@@ -1,28 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf9f6;
+  --surface: #ffffff;
+  --surface-2: #f3f1ea;
+  --foreground: #1a1815;
+  --muted: #6b6660;
+  --border: #ece8de;
+  --accent: #b8865b;
+  --accent-soft: rgba(184, 134, 91, 0.12);
+  --accent-strong: #9c6f49;
+  --ring: rgba(184, 134, 91, 0.4);
+
+  --ambient-1: rgba(232, 184, 138, 0.32);
+  --ambient-2: rgba(212, 165, 116, 0.18);
+  --ambient-3: rgba(168, 152, 122, 0.14);
+
+  --shadow-card: 0 1px 2px rgba(26, 24, 21, 0.04), 0 8px 24px -12px rgba(26, 24, 21, 0.08);
+  --shadow-elevated: 0 1px 2px rgba(26, 24, 21, 0.04), 0 24px 48px -20px rgba(26, 24, 21, 0.12);
+
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+
+  --ease-spring: linear(
+    0, 0.006, 0.025 2.8%, 0.101 6.1%, 0.539 18.9%,
+    0.721 25.3%, 0.849 31.5%, 0.937 38.1%, 0.968 41.8%,
+    0.991 45.7%, 1.006 50.1%, 1.015 55%, 1.017 63.9%,
+    0.998 85.6%, 1
+  );
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-ring: var(--ring);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b0e14;
+    --surface: #11151d;
+    --surface-2: #161b25;
+    --foreground: #f0ede6;
+    --muted: #8b8478;
+    --border: #1f2530;
+    --accent: #d4a574;
+    --accent-soft: rgba(212, 165, 116, 0.16);
+    --accent-strong: #e8b889;
+    --ring: rgba(212, 165, 116, 0.4);
+
+    --ambient-1: rgba(212, 165, 116, 0.14);
+    --ambient-2: rgba(140, 110, 80, 0.10);
+    --ambient-3: rgba(80, 100, 130, 0.08);
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -12px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 1px 2px rgba(0, 0, 0, 0.2), 0 24px 48px -20px rgba(0, 0, 0, 0.5);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: strict;
+  }
+
+  .ambient__blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: 1;
+    will-change: transform;
+    mix-blend-mode: multiply;
+  }
+
+  .ambient__blob--1 {
+    top: -10%;
+    left: -5%;
+    width: 50vw;
+    height: 50vw;
+    background: var(--ambient-1);
+    animation: drift-1 32s ease-in-out infinite alternate;
+  }
+
+  .ambient__blob--2 {
+    top: 30%;
+    right: -15%;
+    width: 45vw;
+    height: 45vw;
+    background: var(--ambient-2);
+    animation: drift-2 38s ease-in-out infinite alternate;
+  }
+
+  .ambient__blob--3 {
+    bottom: -15%;
+    left: 25%;
+    width: 55vw;
+    height: 55vw;
+    background: var(--ambient-3);
+    animation: drift-3 44s ease-in-out infinite alternate;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .ambient__blob {
+      mix-blend-mode: screen;
+    }
+  }
+
+  @keyframes drift-1 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(8vw, 6vh, 0) scale(1.1); }
+  }
+
+  @keyframes drift-2 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(-6vw, 8vh, 0) scale(1.15); }
+  }
+
+  @keyframes drift-3 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(10vw, -6vh, 0) scale(1.05); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient__blob {
+      animation: none;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 .scrollbar-hide {

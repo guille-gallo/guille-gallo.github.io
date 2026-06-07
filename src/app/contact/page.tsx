@@ -12,10 +12,10 @@ export default function ContactPage() {
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
       {/* Header */}
       <section className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground">
           Get in Touch
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+        <p className="mx-auto max-w-2xl text-lg text-muted">
           Interested in working together or have a question? Feel free to reach out
           through any of the channels below.
         </p>
@@ -26,14 +26,14 @@ export default function ContactPage() {
         {/* Email */}
         <a
           href={`mailto:${cvData.email}`}
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-glass)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <Mail className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+            <Mail className="h-6 w-6" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Email</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground">Email</p>
+            <p className="text-sm text-muted">
               {cvData.email}
             </p>
           </div>
@@ -44,14 +44,14 @@ export default function ContactPage() {
           href={cvData.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-glass)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <Github className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+            <Github className="h-6 w-6" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">GitHub</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground">GitHub</p>
+            <p className="text-sm text-muted">
               github.com/guille-gallo
             </p>
           </div>
@@ -63,14 +63,14 @@ export default function ContactPage() {
             href={cvData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+            className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-glass)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-              <Linkedin className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+              <Linkedin className="h-6 w-6" />
             </div>
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">LinkedIn</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="font-medium text-foreground">LinkedIn</p>
+              <p className="text-sm text-muted">
                 Connect on LinkedIn
               </p>
             </div>
@@ -82,14 +82,14 @@ export default function ContactPage() {
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cvData.location)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-glass)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <MapPin className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+            <MapPin className="h-6 w-6" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Location</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground">Location</p>
+            <p className="text-sm text-muted">
               {cvData.location}
             </p>
           </div>

@@ -13,7 +13,7 @@ export function ProjectContentRenderer({ content, fallbackDescription }: Project
   }
 
   return (
-    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    <p className="mt-2 text-sm text-muted">
       {fallbackDescription}
     </p>
   );

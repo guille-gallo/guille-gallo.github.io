@@ -19,13 +19,13 @@ export function GitHubStatsDisplay({ stats }: GitHubStatsDisplayProps) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, delay: index * 0.1 }}
-          className="flex flex-col items-center rounded-xl border border-gray-200 bg-white p-4 text-center dark:border-gray-800 dark:bg-gray-900"
+          className="flex flex-col items-center rounded-2xl border border-border bg-surface p-4 text-center shadow-[var(--shadow-glass)] backdrop-blur-xl"
         >
-          <item.icon className="mb-2 h-5 w-5 text-gray-600 dark:text-gray-400" />
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+          <item.icon className="mb-2 h-5 w-5 text-muted" />
+          <span className="text-2xl font-bold text-foreground">
             {item.value}
           </span>
-          <span className="text-xs text-gray-600 dark:text-gray-400">
+          <span className="text-xs text-muted">
             {item.label}
           </span>
         </motion.div>

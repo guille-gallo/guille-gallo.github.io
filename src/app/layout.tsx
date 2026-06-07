@@ -52,8 +52,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        <svg className="liquid__svg-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id="liquid-goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
+              <feColorMatrix
+                type="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+              />
+            </filter>
+          </defs>
+        </svg>
+        <div className="liquid" aria-hidden="true">
+          <div className="liquid__layer">
+            <div className="liquid__blob liquid__blob--1" />
+            <div className="liquid__blob liquid__blob--2" />
+            <div className="liquid__blob liquid__blob--3" />
+            <div className="liquid__blob liquid__blob--4" />
+          </div>
+        </div>
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-grow">{children}</main>

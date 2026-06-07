@@ -1,28 +1,184 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f2ec;
+  --surface: rgba(255, 255, 255, 0.45);
+  --surface-2: rgba(255, 255, 255, 0.65);
+  --surface-strong: rgba(255, 255, 255, 0.85);
+  --foreground: #1a1815;
+  --muted: #6b6660;
+  --border: rgba(255, 255, 255, 0.6);
+  --border-strong: rgba(26, 24, 21, 0.08);
+  --accent: #b8865b;
+  --accent-soft: rgba(184, 134, 91, 0.18);
+  --accent-strong: #9c6f49;
+  --ring: rgba(184, 134, 91, 0.4);
+
+  --blob-amber: #e8a85b;
+  --blob-honey: #d49545;
+  --blob-sage: #8fb09e;
+  --blob-moss: #b0a85a;
+
+  --shadow-glass: 0 1px 2px rgba(26, 24, 21, 0.04), 0 8px 32px -8px rgba(26, 24, 21, 0.08);
+  --shadow-elevated: 0 1px 2px rgba(26, 24, 21, 0.04), 0 24px 48px -20px rgba(26, 24, 21, 0.12);
+
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+
+  --ease-spring: linear(
+    0, 0.006, 0.025 2.8%, 0.101 6.1%, 0.539 18.9%,
+    0.721 25.3%, 0.849 31.5%, 0.937 38.1%, 0.968 41.8%,
+    0.991 45.7%, 1.006 50.1%, 1.015 55%, 1.017 63.9%,
+    0.998 85.6%, 1
+  );
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-strong: var(--surface-strong);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-ring: var(--ring);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0d12;
+    --surface: rgba(255, 255, 255, 0.06);
+    --surface-2: rgba(255, 255, 255, 0.09);
+    --surface-strong: rgba(255, 255, 255, 0.14);
+    --foreground: #f0ede6;
+    --muted: #8b8478;
+    --border: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --accent: #d4a574;
+    --accent-soft: rgba(212, 165, 116, 0.2);
+    --accent-strong: #e8b889;
+    --ring: rgba(212, 165, 116, 0.4);
+
+    --blob-amber: #e8a868;
+    --blob-honey: #d49555;
+    --blob-sage: #6b9586;
+    --blob-moss: #9a9658;
+
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 32px -8px rgba(0, 0, 0, 0.5);
+    --shadow-elevated: 0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 48px -20px rgba(0, 0, 0, 0.6);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  .liquid {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: strict;
+  }
+
+  .liquid__layer {
+    position: absolute;
+    inset: 0;
+    filter: url(#liquid-goo);
+    will-change: transform;
+  }
+
+  .liquid__blob {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
+  }
+
+  .liquid__blob--1 {
+    top: -8%;
+    left: -10%;
+    width: 38vmax;
+    height: 38vmax;
+    background: var(--blob-amber);
+    animation: drift-1 28s ease-in-out infinite alternate;
+  }
+
+  .liquid__blob--2 {
+    top: 18%;
+    right: -14%;
+    width: 32vmax;
+    height: 32vmax;
+    background: var(--blob-sage);
+    animation: drift-2 34s ease-in-out infinite alternate;
+  }
+
+  .liquid__blob--3 {
+    bottom: -10%;
+    left: 22%;
+    width: 34vmax;
+    height: 34vmax;
+    background: var(--blob-honey);
+    animation: drift-3 40s ease-in-out infinite alternate;
+  }
+
+  .liquid__blob--4 {
+    top: 55%;
+    left: -8%;
+    width: 24vmax;
+    height: 24vmax;
+    background: var(--blob-moss);
+    animation: drift-4 36s ease-in-out infinite alternate;
+  }
+
+  .liquid__svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  @keyframes drift-1 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(12vw, 8vh, 0) scale(1.12); }
+  }
+
+  @keyframes drift-2 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(-10vw, 10vh, 0) scale(1.18); }
+  }
+
+  @keyframes drift-3 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(14vw, -8vh, 0) scale(1.08); }
+  }
+
+  @keyframes drift-4 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(16vw, -6vh, 0) scale(1.15); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .liquid__blob {
+      animation: none;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 .scrollbar-hide {

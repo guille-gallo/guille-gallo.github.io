@@ -39,7 +39,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
         <button
           type="button"
           onClick={() => scrollBy(-scrollAmount)}
-          className="rounded-full bg-white/90 p-3 text-gray-800 shadow-md ring-1 ring-gray-200 backdrop-blur transition hover:bg-white dark:bg-gray-900/90 dark:text-gray-100 dark:ring-gray-700"
+          className="rounded-full border border-border bg-surface p-3 text-foreground-strong transition-colors hover:border-border-strong"
           aria-label="Scroll left"
         >
           <ChevronLeft className="h-6 w-6" />
@@ -47,7 +47,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
         <button
           type="button"
           onClick={() => scrollBy(scrollAmount)}
-          className="rounded-full bg-white/90 p-3 text-gray-800 shadow-md ring-1 ring-gray-200 backdrop-blur transition hover:bg-white dark:bg-gray-900/90 dark:text-gray-100 dark:ring-gray-700"
+          className="rounded-full border border-border bg-surface p-3 text-foreground-strong transition-colors hover:border-border-strong"
           aria-label="Scroll right"
         >
           <ChevronRight className="h-6 w-6" />

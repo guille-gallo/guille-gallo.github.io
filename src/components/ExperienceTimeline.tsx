@@ -17,7 +17,7 @@ export function ExperienceTimeline({ experiences }: ExperienceTimelineProps) {
   return (
     <div className="relative space-y-8">
       {/* Timeline line */}
-      <div className="absolute left-4 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-800 sm:left-1/2 sm:-translate-x-0.5" />
+      <div className="absolute left-4 top-0 h-full w-0.5 bg-border-on-sky sm:left-1/2 sm:-translate-x-0.5" />
 
       {experiences.map((exp, index) => (
         <motion.div
@@ -31,26 +31,26 @@ export function ExperienceTimeline({ experiences }: ExperienceTimelineProps) {
         >
           {/* Timeline dot */}
           <div
-            className={`absolute left-3 top-1 h-3 w-3 rounded-full border-2 border-white bg-gray-900 dark:border-gray-950 dark:bg-white sm:left-auto ${
+            className={`absolute left-3 top-1 h-3 w-3 rounded-full border-2 border-surface bg-accent sm:left-auto ${
               index % 2 === 0 ? "sm:-right-1.5" : "sm:-left-1.5"
             }`}
           />
 
-          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <div className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-glass)]">
             <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-              <h3 className="font-semibold text-gray-900 dark:text-white">
+              <h3 className="font-medium text-foreground-strong">
                 {exp.role}
               </h3>
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+              <span className="text-xs text-muted">
                 {formatDate(exp.startDate)} – {formatDate(exp.endDate)}
               </span>
             </div>
 
-            <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <p className="mb-2 text-sm text-muted">
               {exp.company} · {exp.location}
             </p>
 
-            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mb-3 text-sm text-muted">
               {exp.description}
             </p>
 
@@ -59,7 +59,7 @@ export function ExperienceTimeline({ experiences }: ExperienceTimelineProps) {
                 {exp.highlights.map((highlight, i) => (
                   <li
                     key={i}
-                    className="text-sm text-gray-600 before:mr-2 before:content-['•'] dark:text-gray-400"
+                    className="text-sm text-muted before:mr-2 before:content-['•']"
                   >
                     {highlight}
                   </li>
@@ -71,7 +71,7 @@ export function ExperienceTimeline({ experiences }: ExperienceTimelineProps) {
               {exp.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md bg-gray-100 px-2 py-0.5 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                  className="rounded-md bg-surface-2 px-2 py-0.5 text-xs text-muted"
                 >
                   {tech}
                 </span>

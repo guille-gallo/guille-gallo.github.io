@@ -12,28 +12,28 @@ export default function ContactPage() {
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
       {/* Header */}
       <section className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className="mb-4 text-4xl font-medium tracking-tight text-on-sky sm:text-5xl">
           Get in Touch
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+        <p className="mx-auto max-w-2xl text-lg text-on-sky-muted">
           Interested in working together or have a question? Feel free to reach out
           through any of the channels below.
         </p>
       </section>
 
-      {/* Contact Links */}
-      <div className="mx-auto max-w-xl space-y-4">
+      {/* Contact Links — surface panel over the sky canvas */}
+      <div className="mx-auto max-w-xl space-y-3 rounded-2xl bg-surface p-6 shadow-[var(--shadow-glass)]">
         {/* Email */}
         <a
           href={`mailto:${cvData.email}`}
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="flex items-center gap-4 rounded-xl border border-border bg-surface-2 p-4 transition-colors hover:border-border-strong"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <Mail className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground transition-colors group-hover:text-accent">
+            <Mail className="h-5 w-5" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Email</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground-strong">Email</p>
+            <p className="text-sm text-muted">
               {cvData.email}
             </p>
           </div>
@@ -44,14 +44,14 @@ export default function ContactPage() {
           href={cvData.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="flex items-center gap-4 rounded-xl border border-border bg-surface-2 p-4 transition-colors hover:border-border-strong"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <Github className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground">
+            <Github className="h-5 w-5" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">GitHub</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground-strong">GitHub</p>
+            <p className="text-sm text-muted">
               github.com/guille-gallo
             </p>
           </div>
@@ -63,14 +63,14 @@ export default function ContactPage() {
             href={cvData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+            className="flex items-center gap-4 rounded-xl border border-border bg-surface-2 p-4 transition-colors hover:border-border-strong"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-              <Linkedin className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground">
+              <Linkedin className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">LinkedIn</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="font-medium text-foreground-strong">LinkedIn</p>
+              <p className="text-sm text-muted">
                 Connect on LinkedIn
               </p>
             </div>
@@ -82,14 +82,14 @@ export default function ContactPage() {
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cvData.location)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+          className="flex items-center gap-4 rounded-xl border border-border bg-surface-2 p-4 transition-colors hover:border-border-strong"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-            <MapPin className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground">
+            <MapPin className="h-5 w-5" />
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Location</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="font-medium text-foreground-strong">Location</p>
+            <p className="text-sm text-muted">
               {cvData.location}
             </p>
           </div>

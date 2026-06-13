@@ -12,26 +12,26 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
-      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-center px-4 sm:px-6">
-        <ul className="flex items-center gap-3 sm:gap-4">
+    <header className="sticky top-0 z-50 mx-4 mt-4 sm:mx-6 lg:mx-auto lg:max-w-5xl">
+      <nav className="glass-panel flex h-14 w-full items-center justify-center rounded-2xl px-4 sm:px-6">
+        <ul className="flex items-center gap-2 sm:gap-3">
           {navItems.map((item) => {
             const isActive = pathname === item.href || pathname === item.href.slice(0, -1);
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
-                      ? "text-gray-900 dark:text-white"
-                      : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                      ? "text-slate-900"
+                      : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
                   }`}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-x-0 -bottom-[1px] h-0.5 bg-gray-900 dark:bg-white"
+                      className="absolute inset-0 -z-10 rounded-full bg-slate-100"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}

@@ -24,18 +24,19 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -3, transition: { duration: 0.2, ease: "easeOut" } }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group relative flex h-full flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+      className="glass-panel group relative flex h-full cursor-pointer flex-col p-4"
     >
       {/* Header */}
       <div className="mb-2 flex items-start justify-between">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-base font-semibold text-slate-900">
           {githubData?.html_url ? (
             <a
               href={githubData.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+              className="transition-colors hover:text-blue-600"
             >
               {project.repoName}
             </a>
@@ -48,7 +49,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             href={project.vercelUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+            className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700 transition-colors hover:bg-slate-200"
           >
             <ExternalLink className="h-3 w-3" />
             Live Demo
@@ -57,7 +58,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      <p className="mb-3 line-clamp-3 flex-grow text-sm text-gray-600 dark:text-gray-400">
+      <p className="mb-3 line-clamp-3 flex-grow text-sm text-slate-500">
         {description}
       </p>
 
@@ -66,25 +67,17 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         {(githubData?.language || githubData?.topics?.length || extraPills.length > 0) && (
           <div className="flex flex-wrap gap-1.5 pt-0.5">
             {githubData?.language && (
-              <span
-                className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-              >
+              <span className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700">
                 {githubData.language}
               </span>
             )}
             {githubData?.topics?.slice(0, 4).map((topic) => (
-              <span
-                key={topic}
-                className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-              >
+              <span key={topic} className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700">
                 {topic}
               </span>
             ))}
             {extraPills.map((pill) => (
-              <span
-                key={pill}
-                className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-              >
+              <span key={pill} className="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700">
                 {pill}
               </span>
             ))}
@@ -96,7 +89,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             href={githubData.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto shrink-0 self-end rounded-lg p-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+            className="ml-auto shrink-0 self-end rounded-lg p-1 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
             aria-label="View on GitHub"
           >
             <Github className="h-4 w-4" />

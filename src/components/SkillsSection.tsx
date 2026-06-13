@@ -17,9 +17,9 @@ const categoryLabels: Record<Skill["category"], string> = {
 };
 
 const proficiencyColors: Record<Skill["proficiency"], string> = {
-  expert: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-  advanced: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-  intermediate: "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+  expert: "bg-green-100 text-green-800",
+  advanced: "bg-blue-100 text-blue-800",
+  intermediate: "bg-slate-100 text-slate-700",
 };
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
@@ -54,7 +54,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
           >
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-500">
               {categoryLabels[category]}
             </h3>
             <div className="flex flex-wrap gap-2">

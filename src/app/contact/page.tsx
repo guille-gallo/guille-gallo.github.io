@@ -26,9 +26,9 @@ export default function ContactPage() {
         {/* Email */}
         <a
           href={`mailto:${cvData.email}`}
-          className="flex items-center gap-4 rounded-xl bg-white p-5 transition-all hover:shadow-sm"
+          className="glass-panel flex items-center gap-4 p-5"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/40">
             <Mail className="h-6 w-6 text-slate-700" />
           </div>
           <div>
@@ -44,9 +44,9 @@ export default function ContactPage() {
           href={cvData.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl bg-white p-5 transition-all hover:shadow-sm"
+          className="glass-panel flex items-center gap-4 p-5"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/40">
             <Github className="h-6 w-6 text-slate-700" />
           </div>
           <div>
@@ -63,9 +63,9 @@ export default function ContactPage() {
             href={cvData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-xl bg-white p-5 transition-all hover:shadow-sm"
+            className="glass-panel flex items-center gap-4 p-5"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/40">
               <Linkedin className="h-6 w-6 text-slate-700" />
             </div>
             <div>
@@ -82,9 +82,9 @@ export default function ContactPage() {
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cvData.location)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-xl bg-white p-5 transition-all hover:shadow-sm"
+          className="glass-panel flex items-center gap-4 p-5"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/40">
             <MapPin className="h-6 w-6 text-slate-700" />
           </div>
           <div>

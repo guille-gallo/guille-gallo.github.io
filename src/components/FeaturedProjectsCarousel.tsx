@@ -39,7 +39,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
         <button
           type="button"
           onClick={() => scrollBy(-scrollAmount)}
-          className="glass-panel cursor-pointer rounded-full p-3 text-slate-700 transition hover:bg-white hover:shadow-sm"
+          className="glass-panel cursor-pointer rounded-full p-3 text-slate-700 transition"
           aria-label="Scroll left"
         >
           <ChevronLeft className="h-6 w-6" />
@@ -47,7 +47,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
         <button
           type="button"
           onClick={() => scrollBy(scrollAmount)}
-          className="glass-panel cursor-pointer rounded-full p-3 text-slate-700 transition hover:bg-white hover:shadow-sm"
+          className="glass-panel cursor-pointer rounded-full p-3 text-slate-700 transition"
           aria-label="Scroll right"
         >
           <ChevronRight className="h-6 w-6" />

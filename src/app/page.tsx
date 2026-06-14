@@ -41,18 +41,12 @@ export default async function HomePage() {
               <h2 className="text-2xl font-bold text-slate-900">
                 <Link
                   href="/github-featured-projects/"
-                  className="transition-colors hover:text-slate-700"
+                  className="inline-flex items-center gap-1.5 transition-colors hover:text-slate-700"
                 >
                   GitHub featured projects
+                  <ArrowUpRight className="h-5 w-5" />
                 </Link>
               </h2>
-              <Link
-                href="/github-featured-projects/"
-                className="inline-flex items-center rounded-full bg-slate-200 p-2 text-slate-600 transition hover:bg-slate-300"
-                aria-label="Browse GitHub featured projects"
-              >
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
           <FeaturedProjectsCarousel projects={featuredProjects} />

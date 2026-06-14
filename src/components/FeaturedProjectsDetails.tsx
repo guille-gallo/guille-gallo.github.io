@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
-import { FeaturedProject, getProjectDescription } from "@/lib/projects";
+import { FeaturedProject, getProjectDescription, toProjectId } from "@/lib/projects";
 
 interface FeaturedProjectsDetailsProps {
   projects: FeaturedProject[];
@@ -24,23 +25,44 @@ function getProjectContentComponent(repoName: string): React.ComponentType | nul
   return projectContentLoaders[key] || null;
 }
 
-
-function toProjectId(repoName: string): string {
-  return `project-${repoName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")}`;
+function getProjectIdFromHash(): string | null {
+  if (typeof window === "undefined") return null;
+  const hash = window.location.hash.replace(/^#/, "");
+  return hash.length > 0 ? hash : null;
 }
 
 export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsProps) {
-  const initialProjectId = useMemo(() => {
+  const fallbackProjectId = useMemo(() => {
     if (projects.length === 0) return "";
-    const mapland = projects.find((project) => project.repoName.toLowerCase() === "mapland");
-    const initial = mapland ?? projects[0];
-    return initial ? toProjectId(initial.repoName) : "";
+    return toProjectId(projects[0].repoName);
   }, [projects]);
 
-  const [activeProjectId, setActiveProjectId] = useState(initialProjectId);
+  const [activeProjectId, setActiveProjectId] = useState(fallbackProjectId);
+
+  // Sync to URL hash on mount and whenever the hash changes
+  useEffect(() => {
+    if (projects.length === 0) return;
+
+    const applyHash = () => {
+      const hashId = getProjectIdFromHash();
+      const matches = hashId
+        ? projects.find((p) => toProjectId(p.repoName) === hashId)
+        : undefined;
+      const nextId = matches ? toProjectId(matches.repoName) : fallbackProjectId;
+      setActiveProjectId(nextId);
+
+      if (matches) {
+        // Ensure the target article is in view (native anchor jump can race with state updates)
+        requestAnimationFrame(() => {
+          document.getElementById(nextId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    };
+
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, [projects, fallbackProjectId]);
 
   const activeProject = useMemo(
     () => projects.find((project) => toProjectId(project.repoName) === activeProjectId) ?? projects[0],
@@ -172,13 +194,14 @@ export function FeaturedProjectsDetails({ projects }: FeaturedProjectsDetailsPro
                     screenshots.slice(0, 4).map((src, index) => (
                       <div
                         key={`${activeProject.repoName}-shot-${index}`}
-                        className="overflow-hidden rounded-xl bg-white shadow-sm"
+                        className="relative h-40 w-full overflow-hidden rounded-xl bg-white shadow-sm"
                       >
-                        <img
+                        <Image
                           src={src}
                           alt={`${activeProject.repoName} screenshot ${index + 1}`}
-                          className="h-40 w-full object-cover"
-                          loading="lazy"
+                          fill
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="object-cover"
                         />
                       </div>
                     ))

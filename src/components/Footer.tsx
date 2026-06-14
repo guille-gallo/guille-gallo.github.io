@@ -3,7 +3,6 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { cvData } from "@/lib/cv-data";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="mx-4 mb-4 mt-auto px-4 py-6 sm:mx-6 lg:mx-auto lg:max-w-5xl">

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
-import { FeaturedProject, getProjectDescription } from "@/lib/projects";
+import { ExternalLink } from "lucide-react";
+import { FeaturedProject, getProjectDescription, toProjectId } from "@/lib/projects";
 
 interface ProjectCardProps {
   project: FeaturedProject;
@@ -20,22 +21,32 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     (pill) => !shownFromGitHub.has(pill.toLowerCase())
   );
 
+  const detailsHref = `/github-featured-projects/#${toProjectId(project.repoName)}`;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -3, transition: { duration: 0.2, ease: "easeOut" } }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="glass-panel group relative flex h-full cursor-pointer flex-col p-4"
+      className="glass-panel group relative flex h-full flex-col p-4"
     >
+      {/* Card surface link — covers the whole card; inner <a>s use stopPropagation */}
+      <Link
+        href={detailsHref}
+        aria-label={`View details for ${project.repoName}`}
+        className="absolute inset-0 z-0 rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      />
+
       {/* Header */}
-      <div className="mb-2 flex items-start justify-between">
+      <div className="relative z-10 mb-2 flex items-start justify-between gap-2">
         <h3 className="text-base font-semibold text-slate-900">
           {githubData?.html_url ? (
             <a
               href={githubData.html_url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="transition-colors hover:text-blue-600"
             >
               {project.repoName}
@@ -49,7 +60,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             href={project.vercelUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700 transition-colors hover:bg-slate-200"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex shrink-0 items-center gap-1 rounded-full bg-slate-900 px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm transition-colors hover:bg-slate-700"
           >
             <ExternalLink className="h-3 w-3" />
             Live Demo
@@ -58,12 +70,12 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      <p className="mb-3 line-clamp-3 flex-grow text-sm text-slate-500">
+      <p className="relative z-10 mb-3 line-clamp-3 flex-grow text-sm text-slate-500">
         {description}
       </p>
 
-      {/* Topics & Link */}
-      <div className="mt-auto flex items-start gap-2 pt-2">
+      {/* Topics */}
+      <div className="relative z-10 mt-auto flex items-start gap-2 pt-2">
         {(githubData?.language || githubData?.topics?.length || extraPills.length > 0) && (
           <div className="flex flex-wrap gap-1.5 pt-0.5">
             {githubData?.language && (
@@ -82,18 +94,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               </span>
             ))}
           </div>
-        )}
-
-        {githubData?.html_url && (
-          <a
-            href={githubData.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-auto shrink-0 self-end rounded-lg p-1 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
-            aria-label="View on GitHub"
-          >
-            <Github className="h-4 w-4" />
-          </a>
         )}
       </div>
     </motion.article>

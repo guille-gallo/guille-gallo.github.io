@@ -22,7 +22,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
     <div className="relative z-10">
       <div
         ref={scrollRef}
-        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-webkit-overflow-scrolling:touch]"
+        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto pt-2 pb-4 [-webkit-overflow-scrolling:touch]"
         aria-label="Featured projects carousel"
       >
         {projects.map((project, index) => (

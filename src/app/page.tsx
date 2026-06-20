@@ -36,7 +36,7 @@ export default async function HomePage() {
       {/* Featured Projects */}
       {featuredProjects.length > 0 && (
         <section className="mx-auto max-w-3xl">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <h2 className="text-2xl font-bold text-slate-900">
                 <Link

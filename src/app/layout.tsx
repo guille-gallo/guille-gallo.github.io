@@ -52,8 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} relative min-h-screen overflow-x-hidden bg-neutral-100 text-slate-900 antialiased`}
       >
+        {/* Soft background shapes for glass effect */}
+        <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+          <div className="absolute -left-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-neutral-200 blur-3xl animate-float-1" />
+          <div className="absolute -right-40 bottom-0 h-[40rem] w-[40rem] rounded-full bg-neutral-200 blur-3xl animate-float-2" />
+          <div className="absolute left-1/3 top-1/2 h-[30rem] w-[30rem] rounded-full bg-neutral-300/50 blur-3xl animate-float-3" />
+        </div>
+
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-grow">{children}</main>

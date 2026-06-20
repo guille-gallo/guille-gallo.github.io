@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f5f5;
+  --foreground: #0f172a;
 }
 
 @theme inline {
@@ -12,17 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 .scrollbar-hide {
@@ -32,4 +26,129 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Glassmorphism Classes */
+.glass-panel, .glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 4px 2px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before, .glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.glass-panel::after, .glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7),
+    transparent,
+    rgba(255, 255, 255, 0.2)
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Hover effects */
+.glass-panel-hover {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 12px 36px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 6px 3px rgba(255, 255, 255, 0.25);
+}
+
+.glass-panel {
+  transition: box-shadow 0.15s ease-out, 
+              border-color 0.15s ease-out, 
+              background-color 0.15s ease-out;
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 6px 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Sticky top nav — tuned for legibility on light backgrounds. Nav-scoped on purpose. */
+.glass-nav {
+  position: relative;
+  background: rgba(248, 250, 252, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(15, 23, 42, 0.05),
+    inset 0 0 4px 2px rgba(255, 255, 255, 0.15);
+  transition:
+    background-color 0.2s ease-out,
+    border-color 0.2s ease-out,
+    box-shadow 0.2s ease-out;
+}
+
+.glass-nav-scrolled {
+  background: rgba(248, 250, 252, 0.9);
+  border-color: rgba(226, 232, 240, 0.85);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(15, 23, 42, 0.06),
+    inset 0 0 4px 2px rgba(255, 255, 255, 0.18);
+}
+
+/* Honor users who opt out of transparency effects (Windows "Transparency effects" / iOS). */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-nav,
+  .glass-nav-scrolled {
+    background: rgba(248, 250, 252, 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }

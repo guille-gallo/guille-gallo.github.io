@@ -160,3 +160,10 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
 export function getProjectDescription(project: FeaturedProject): string {
   return project.customDescription || project.githubData?.description || "No description available";
 }
+
+export function toProjectId(repoName: string): string {
+  return `project-${repoName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+}

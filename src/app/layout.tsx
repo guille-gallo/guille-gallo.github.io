@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative min-h-screen overflow-x-hidden bg-neutral-100 text-slate-900 antialiased`}
+        className={`${sora.variable} ${geistMono.variable} relative min-h-screen overflow-x-hidden bg-neutral-100 text-neutral-900 antialiased`}
       >
         {/* Soft background shapes for glass effect */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">

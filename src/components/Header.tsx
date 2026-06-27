@@ -62,8 +62,8 @@ export function Header() {
                   href={item.href}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-white/90 text-slate-900 shadow-sm"
-                      : "text-slate-800 hover:bg-white/90 hover:text-slate-900 hover:shadow-sm"
+                      ? "bg-white/90 text-neutral-900 shadow-sm"
+                      : "text-neutral-700 hover:bg-white/90 hover:text-neutral-900 hover:shadow-sm"
                   }`}
                 >
                   {item.label}

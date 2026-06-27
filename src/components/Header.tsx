@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/github-featured-projects/", label: "GH Featured Projects" },
+  { href: "/github-featured-projects/", label: "Featured Projects" },
   { href: "/contact/", label: "Contact" },
 ];
 

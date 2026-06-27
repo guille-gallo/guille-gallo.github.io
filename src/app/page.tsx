@@ -43,7 +43,7 @@ export default async function HomePage() {
                   href="/github-featured-projects/"
                   className="inline-flex items-center gap-1.5 transition-colors hover:text-slate-700"
                 >
-                  GitHub featured projects
+                  Featured projects
                   <ArrowUpRight className="h-5 w-5" />
                 </Link>
               </h2>

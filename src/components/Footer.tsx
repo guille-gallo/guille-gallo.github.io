@@ -6,13 +6,7 @@ export function Footer() {
 
   return (
     <footer className="mx-4 mb-4 mt-auto px-4 py-6 sm:mx-6 lg:mx-auto lg:max-w-5xl">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
-        <div className="text-center sm:text-left">
-          <p className="text-xs text-slate-500">
-            Built with Next.js & Tailwind CSS
-          </p>
-        </div>
-
+      <div className="mx-auto flex max-w-5xl items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <Link
             href={cvData.github}

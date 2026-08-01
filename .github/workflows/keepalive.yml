@@ -14,13 +14,13 @@ jobs:
       - name: Ping Supabase (mapland)
         run: |
           curl -sS --fail-with-body -m 30 \
-            "${{ secrets.SUPABASE_MAPLAND_URL }}/rest/v1/" \
+            "${{ secrets.SUPABASE_MAPLAND_URL }}/auth/v1/health" \
             -H "apikey: ${{ secrets.SUPABASE_MAPLAND_ANON_KEY }}" -o /dev/null
 
       - name: Ping Supabase (chat-room-app)
         run: |
           curl -sS --fail-with-body -m 30 \
-            "${{ secrets.SUPABASE_CHAT_URL }}/rest/v1/" \
+            "${{ secrets.SUPABASE_CHAT_URL }}/auth/v1/health" \
             -H "apikey: ${{ secrets.SUPABASE_CHAT_ANON_KEY }}" -o /dev/null
 
       - name: Ping Upstash Redis via user-lens API

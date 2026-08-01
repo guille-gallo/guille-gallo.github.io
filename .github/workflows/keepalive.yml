@@ -1,0 +1,36 @@
+name: Keep free-tier databases alive
+
+on:
+  schedule:
+    # Mondays and Thursdays at 03:00 UTC — Supabase pauses after ~7 idle days,
+    # Upstash archives idle free databases
+    - cron: "0 3 * * 1,4"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase (mapland)
+        run: |
+          curl -sS --fail-with-body -m 30 \
+            "${{ secrets.SUPABASE_MAPLAND_URL }}/rest/v1/" \
+            -H "apikey: ${{ secrets.SUPABASE_MAPLAND_ANON_KEY }}" -o /dev/null
+
+      - name: Ping Supabase (chat-room-app)
+        run: |
+          curl -sS --fail-with-body -m 30 \
+            "${{ secrets.SUPABASE_CHAT_URL }}/rest/v1/" \
+            -H "apikey: ${{ secrets.SUPABASE_CHAT_ANON_KEY }}" -o /dev/null
+
+      - name: Ping Upstash Redis via user-lens API
+        run: |
+          curl -sS --fail-with-body -m 30 \
+            "https://user-lens.vercel.app/api/users?_page=1&_limit=1" -o /dev/null
+
+      - name: Ping Upstash Redis via slidedude API
+        run: |
+          curl -sS --fail-with-body -m 30 -X POST \
+            "https://slidedude.io/api/auth/check-email" \
+            -H "Content-Type: application/json" \
+            -d '{"email":"keepalive@slidedude.io"}' -o /dev/null

@@ -7,6 +7,7 @@ export interface FeaturedProject {
   customDescription?: string; // Override GitHub description
   mainDescription: string; // Primary description for details page
   demoVideoUrl?: string; // Optional demo video URL (embed or mp4)
+  demoVideoPoster?: string; // Optional poster image shown before the video plays
   screenshotUrls?: string[]; // Optional screenshot gallery URLs
   featured?: boolean; // Highlight on homepage
   order?: number; // Display order
@@ -34,8 +35,14 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "Interactive map-based application with real-time features",
     mainDescription:
       "Mapland is a location-first experience that blends real-time collaboration with rich map interactions, optimized for both web and mobile use cases.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/mapland-demo.mp4",
+    demoVideoPoster: "/videos/mapland-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/mapland/01-map-overview.webp",
+      "/projects/mapland/02-zone-info-sheet.webp",
+      "/projects/mapland/03-zone-editor.webp",
+      "/projects/mapland/04-drawing-zone.webp",
+    ],
     featured: true,
     order: 1,
     extraPills: ["React", "Mapbox", "OpenGL", "React Native", "Supabase"],

@@ -53,8 +53,14 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "User Management Dashboard built to demonstrate enterprise-grade frontend architecture.",
     mainDescription:
       "User Lens focuses on scalable UI patterns, robust data flows, and admin-friendly workflows tailored to enterprise user management.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/user-lens-demo.mp4",
+    demoVideoPoster: "/videos/user-lens-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/user-lens/01-dashboard.webp",
+      "/projects/user-lens/02-search-results.webp",
+      "/projects/user-lens/03-add-user-panel.webp",
+      "/projects/user-lens/04-user-detail.webp",
+    ],
     featured: true,
     order: 2,
     extraPills: ["React", "Zustand", "Redis", "Playwright"],

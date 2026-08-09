@@ -44,7 +44,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/mapland/04-drawing-zone.webp",
     ],
     featured: true,
-    order: 1,
+    order: 2,
     extraPills: ["React", "Mapbox", "OpenGL", "React Native", "Supabase"],
   },
   {
@@ -62,7 +62,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/user-lens/04-user-detail.webp",
     ],
     featured: true,
-    order: 2,
+    order: 3,
     extraPills: ["React", "Zustand", "Redis", "Playwright"],
   },
   {
@@ -80,7 +80,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/films/04-wishlist.webp",
     ],
     featured: true,
-    order: 3,
+    order: 4,
     extraPills: ["React", "TanStack Query", "Zustand"],
   },
   {
@@ -98,7 +98,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/flashmarket/04-negative-pair.webp",
     ],
     featured: true,
-    order: 4,
+    order: 5,
     extraPills: ["Vue", "Pinia"],
   },
   {
@@ -116,7 +116,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/chat-room-app/04-presence-leave.webp",
     ],
     featured: true,
-    order: 5,
+    order: 6,
     extraPills: ["React", "TypeScript", "Supabase", "Vite"],
   },
   {
@@ -129,7 +129,7 @@ export const featuredProjects: FeaturedProject[] = [
     demoVideoUrl: "",
     screenshotUrls: [],
     featured: false,
-    order: 6,
+    order: 7,
     extraPills: ["Solid.js", "TypeScript", "Kobalte", "Tailwind CSS", "Vite"],
   },
   {
@@ -142,7 +142,7 @@ export const featuredProjects: FeaturedProject[] = [
     demoVideoUrl: "",
     screenshotUrls: [],
     featured: true,
-    order: 7,
+    order: 1,
     extraPills: ["Shiki", "Shiki Magic Move", "Auth.js", "Upstash Redis", "Framer Motion", "dnd-kit"],
   },
 

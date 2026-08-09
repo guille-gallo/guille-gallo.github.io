@@ -134,7 +134,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     repoName: "slidedude",
-    vercelUrl: "https://slidedude.vercel.app/",
+    vercelUrl: "https://slidedude.io",
     customDescription:
       "Animated presentation builder for technical talks with syntax-highlighted code slides, smooth code transitions, content slides, and cloud-backed editing.",
     mainDescription:

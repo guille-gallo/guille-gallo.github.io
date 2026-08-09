@@ -89,8 +89,14 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "Stock dashboard application with real-time data.",
     mainDescription:
       "Flashmarket surfaces live market signals through a fast, visual dashboard that prioritizes clarity and actionable insights.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/flashmarket-demo.mp4",
+    demoVideoPoster: "/videos/flashmarket-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/flashmarket/01-dashboard.webp",
+      "/projects/flashmarket/02-market-overview.webp",
+      "/projects/flashmarket/03-pair-detail.webp",
+      "/projects/flashmarket/04-negative-pair.webp",
+    ],
     featured: true,
     order: 4,
     extraPills: ["Vue", "Pinia"],

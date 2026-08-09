@@ -107,8 +107,14 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "Real-time chat rooms with Google sign-in, online presence, and ephemeral messages.",
     mainDescription:
       "Chat Room App delivers real-time group chat with Google OAuth sign-in, live online presence indicators, and ephemeral messaging — powered by Supabase Realtime broadcast and presence channels.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/chat-room-app-demo.mp4",
+    demoVideoPoster: "/videos/chat-room-app-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/chat-room-app/01-auth-screen.webp",
+      "/projects/chat-room-app/02-chat-general.webp",
+      "/projects/chat-room-app/03-room-tech.webp",
+      "/projects/chat-room-app/04-presence-leave.webp",
+    ],
     featured: true,
     order: 5,
     extraPills: ["React", "TypeScript", "Supabase", "Vite"],

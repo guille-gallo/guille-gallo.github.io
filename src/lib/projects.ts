@@ -128,7 +128,7 @@ export const featuredProjects: FeaturedProject[] = [
       "Solid Dashboard is an interactive learning lab built with Solid.js, covering reactivity primitives, control flow components, state management with Context and createStore, code splitting, and the snapshot pattern for paginated data — all without a virtual DOM.",
     demoVideoUrl: "",
     screenshotUrls: [],
-    featured: true,
+    featured: false,
     order: 6,
     extraPills: ["Solid.js", "TypeScript", "Kobalte", "Tailwind CSS", "Vite"],
   },

@@ -71,8 +71,14 @@ export const featuredProjects: FeaturedProject[] = [
     customDescription: "Movie browsing application featuring TMDB integration, global wishlist state management, and comprehensive testing strategies.",
     mainDescription:
       "Films delivers a cinematic browsing experience with curated discovery flows, watchlist management, and performance-focused architecture.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/films-demo.mp4",
+    demoVideoPoster: "/videos/films-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/films/01-homepage.webp",
+      "/projects/films/02-movie-detail.webp",
+      "/projects/films/03-movie-info.webp",
+      "/projects/films/04-wishlist.webp",
+    ],
     featured: true,
     order: 3,
     extraPills: ["React", "TanStack Query", "Zustand"],

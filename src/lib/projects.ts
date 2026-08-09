@@ -139,8 +139,14 @@ export const featuredProjects: FeaturedProject[] = [
       "Animated presentation builder for technical talks with syntax-highlighted code slides, smooth code transitions, content slides, and cloud-backed editing.",
     mainDescription:
       "Slidedude is a browser-based presentation app for technical talks, combining code editing, rich content slides, drag-and-drop deck management, and Shiki Magic Move transitions into a polished workflow for authoring and presenting live demos.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
+    demoVideoUrl: "/videos/slidedude-demo.mp4",
+    demoVideoPoster: "/videos/slidedude-demo-poster.webp",
+    screenshotUrls: [
+      "/projects/slidedude/01-editor.webp",
+      "/projects/slidedude/02-code-slide.webp",
+      "/projects/slidedude/03-present-mode.webp",
+      "/projects/slidedude/04-diagram-slide.webp",
+    ],
     featured: true,
     order: 1,
     extraPills: ["Shiki", "Shiki Magic Move", "Auth.js", "Upstash Redis", "Framer Motion", "dnd-kit"],

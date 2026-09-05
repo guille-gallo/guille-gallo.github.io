@@ -1,4 +1,5 @@
-import { getRepoDetails, GitHubRepo } from "./github";
+import { query } from "@solidjs/router";
+import { getRepoDetails, type GitHubRepo } from "./github";
 
 export interface FeaturedProject {
   // Manual configuration
@@ -14,12 +15,8 @@ export interface FeaturedProject {
   extraPills?: string[]; // Custom tech pills to render in the card
   privateRepo?: boolean; // Skip GitHub enrichment and never link to the repo
 
-  // Enriched from GitHub API (populated at build time)
+  // Enriched from GitHub API (populated server-side)
   githubData?: GitHubRepo;
-
-  // main description.
-  // demo video.
-  // screenshots gallery.
 }
 
 // ============================================
@@ -164,10 +161,13 @@ export const featuredProjects: FeaturedProject[] = [
 ];
 
 // ============================================
-// Project fetching utilities
+// Server-side enrichment (server function + in-memory cache)
 // ============================================
 
-export async function getEnrichedProjects(): Promise<FeaturedProject[]> {
+const CACHE_TTL_MS = 60 * 60 * 1000;
+let cached: { at: number; projects: FeaturedProject[] } | null = null;
+
+async function enrichProjects(): Promise<FeaturedProject[]> {
   const enrichedProjects = await Promise.all(
     featuredProjects.map(async (project) => {
       if (project.privateRepo) return project;
@@ -192,10 +192,17 @@ export async function getEnrichedProjects(): Promise<FeaturedProject[]> {
   });
 }
 
-export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
-  const projects = await getEnrichedProjects();
-  return projects.filter((p) => p.featured);
-}
+/**
+ * Server function: runs only on the server, result is serialized into the page during SSR
+ * and fetched via RPC on client-side navigation. Cached per server instance for an hour.
+ */
+export const getFeaturedProjects = query(async (): Promise<FeaturedProject[]> => {
+  "use server";
+  if (cached && Date.now() - cached.at < CACHE_TTL_MS) return cached.projects;
+  const projects = (await enrichProjects()).filter((p) => p.featured);
+  cached = { at: Date.now(), projects };
+  return projects;
+}, "featured-projects");
 
 export function getProjectDescription(project: FeaturedProject): string {
   return project.customDescription || project.githubData?.description || "No description available";

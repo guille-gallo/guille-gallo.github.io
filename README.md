@@ -22,6 +22,6 @@ Copy `.env.example` to `.env` and set `GITHUB_TOKEN` to avoid anonymous GitHub A
 
 ## Deploy
 
-`vercel.json` pins `bun install` + `bun run build`; the Nitro Vercel preset is auto-detected and emits `/` and `/github-featured-projects` as ISR functions (revalidated hourly) plus a catch-all server function. Set `VITE_SITE_URL` (public origin) and optionally `GITHUB_TOKEN` in the Vercel project.
+`vercel.json` installs Bun 1.4.2 (Vercel ships Bun 1.3, which cannot read the v2 lockfile) and runs `bun install --frozen-lockfile` + `bun run build`; the Nitro Vercel preset is auto-detected and emits `/` and `/github-featured-projects` as ISR functions (revalidated hourly) plus a catch-all server function. Set `VITE_SITE_URL` (public origin) and optionally `GITHUB_TOKEN` in the Vercel project.
 
 To reproduce the Vercel output locally: `NITRO_PRESET=vercel bun run build` (writes `.vercel/output`). Running the build as `bun --bun run build` makes Nitro target the Bun runtime instead of Node.

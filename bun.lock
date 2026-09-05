@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "guille-gallo.github.io",
+      "name": "guille-gallo",
       "dependencies": {
         "@fontsource-variable/geist-mono": "^5.3.0",
         "@fontsource-variable/sora": "^5.3.0",

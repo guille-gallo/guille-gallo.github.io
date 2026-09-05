@@ -52,7 +52,7 @@ export const cvData: CVData = {
   bio: "I love what I do, I feel extremely fortunate about the fact that my job is one of the awesome things in my life. Welcome to my personal website.",
   linkedin: "https://www.linkedin.com/in/guillermo-gallo-79481751/", // Update or remove
   github: "https://github.com/guille-gallo",
-  website: "https://guille-gallo.github.io",
+  website: "https://guille-gallo-github-io.vercel.app",
 
   experience: [
     {

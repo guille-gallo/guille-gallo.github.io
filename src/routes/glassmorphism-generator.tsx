@@ -134,7 +134,7 @@ export default function GlassmorphismGeneratorPage() {
                 </a>
               </h3>
               <a
-                href="https://guille-gallo.github.io"
+                href="https://guille-gallo-github-io.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700 transition-colors hover:bg-slate-200"

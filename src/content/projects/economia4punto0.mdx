@@ -1,0 +1,93 @@
+Economía4.0 is an Argentine economics publication with more than a decade of articles, analysis and downloadable reports on the country's economy. The project rebuilds it from the ground up: a SolidStart application backed by Supabase replaces the original WordPress.com site, keeping every historical URL intact while adding a purpose-built admin CMS, reader engagement, newsletter, full-text search and on-demand audio. The repository is private because it powers a real publication with a real author, so there is no public source link.
+
+## What readers get
+
+<Feature icon="newspaper" title="Public site with WordPress-identical URLs">
+  Homepage, four category listings (Opinión, Informes, Noticias, Libros), monthly archives and article pages at the same `/yyyy/mm/dd/slug` shape as the original site, so a decade of backlinks keeps working after the migration.
+</Feature>
+
+<Feature icon="trending-up" title="Live economic indicators">
+  A ticker in the masthead shows dollar exchange rates, inflation, country risk and central-bank data pulled from public Argentine APIs, refreshed client-side through a CDN-cached endpoint so ISR pages never show stale numbers.
+</Feature>
+
+<Feature icon="headphones" title="Listen to this report">
+  Each report can be played as audio. The server extracts the text from the PDF, synthesizes it in chunks through Google Cloud Text-to-Speech, stores the MP3 in Supabase Storage and caches it per post, with stale-run recovery for crashed serverless jobs.
+</Feature>
+
+<Feature icon="search" title="Full-text search">
+  Postgres full-text search with a Spanish, accent-insensitive `tsvector` generated column and a GIN index, exposed through an RPC and served server-side with filters and pagination.
+</Feature>
+
+<Feature icon="message-square" title="Comments and likes">
+  Native comment form that works without JavaScript, moderation-first (pending by default) with admin replies and an "Autor" badge, plus idempotent per-visitor likes served from a no-cache metadata route so engagement is never baked into cached HTML.
+</Feature>
+
+<Feature icon="mail" title="Newsletter, RSS and downloads">
+  Subscribe and unsubscribe flows double-written to Buttondown and an owned subscribers table, an RSS feed with a legacy `/feed` alias, a contact form, and report downloads served from Supabase Storage.
+</Feature>
+
+## The admin CMS
+
+Everything the author needs lives under `/admin`, fully in Spanish and with no technical jargon.
+
+<Feature icon="pen-tool" title="Article editor">
+  TipTap-based editor with a minimal toolbar that matches the sanitizer's allowlist, autosave, and a draft → preview → publish flow with confirmation. Slug and date lock after publishing; deletes are soft and recoverable from a trash.
+</Feature>
+
+<Feature icon="file-input" title="Import from Word">
+  The author writes in Word. A server-side mammoth pipeline with a tuned style map converts `.docx` files into sanitized article HTML, including real bullet lists and headings.
+</Feature>
+
+<Feature icon="paperclip" title="Attachments and report numbering">
+  Attachment panel with uploads to Supabase Storage and an auto-suggested report number, replacing the regex-based download extraction of the WordPress era.
+</Feature>
+
+<Feature icon="shield-check" title="Moderation, pages and subscribers">
+  Comment queue with approve, spam and delete actions, editable static pages, and a subscribers list, all behind a Supabase Auth session and an optional admin allowlist.
+</Feature>
+
+<Feature icon="refresh-cw" title="Instant publishing">
+  Publishing triggers on-demand ISR revalidation with a bypass token, so new articles appear immediately while the rest of the site stays served from Vercel's cache.
+</Feature>
+
+## Migration strategy
+
+<Feature icon="git-branch" title="Dual data source facade">
+  A `content.ts` facade mirrors the WordPress client's signatures and switches between the WordPress REST API and Supabase on a single `DATA_SOURCE` environment variable. Routes never changed and rollback was an env flip.
+</Feature>
+
+<Feature icon="database" title="Schema designed for parity">
+  WordPress numeric IDs became the primary keys, categories are many-to-many, and content is stored as sanitized HTML with the same shape as WordPress output so migrated and new posts share one render path. Twelve SQL migrations cover schema, RLS, RPCs, engagement, search, archives and audio.
+</Feature>
+
+<Feature icon="flag" title="Coming-soon gate">
+  A middleware serves a themed "Muy pronto" page on the custom domain while the Vercel URL runs the full site, so launch is a domain reassignment with no code change.
+</Feature>
+
+## Security model
+
+<Feature icon="lock" title="Read-only anon key, server-only writes">
+  Row Level Security makes the public key strictly read-only. Every write goes through `"use server"` functions: public actions use the service-role key behind spam controls, admin actions require a verified session. Private columns such as commenter emails and IP hashes are hidden through column grants.
+</Feature>
+
+<Feature icon="bug-off" title="Layered spam defenses">
+  Honeypot field, HMAC time-trap, per-IP Postgres rate limiting, URL heuristics and an optional Cloudflare Turnstile switch. Likes are keyed by a salted SHA-256 of IP and user agent, computed only on the server.
+</Feature>
+
+<Feature icon="shield" title="Hardened request handling">
+  CSRF protection for server functions in middleware, a Content Security Policy report endpoint, runtime validation of every ID before it reaches a PostgREST URL, and strict separation between server-only modules and client-callable RPCs.
+</Feature>
+
+## Technical stack
+
+<Feature icon="code" title="Framework">
+  SolidJS with SolidStart 2 (Vite 8 + Nitro) and TypeScript, deployed to Vercel with ISR and a daily cron keep-alive for the free-tier database.
+</Feature>
+
+<Feature icon="server" title="Backend">
+  Supabase as Postgres, Auth and Storage, with all data access mediated by RLS policies, security-definer RPCs and server functions.
+</Feature>
+
+<Feature icon="package" title="Tooling and quality">
+  Bun as package manager, script runner and test runner, with a `bun test` suite spanning sanitization, CSRF, rate limiting, search parsing, RSS, TTS text handling and admin services, plus a mutation-testing agent to check test strength.
+</Feature>

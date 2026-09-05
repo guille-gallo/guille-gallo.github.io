@@ -12,6 +12,7 @@ export interface FeaturedProject {
   featured?: boolean; // Highlight on homepage
   order?: number; // Display order
   extraPills?: string[]; // Custom tech pills to render in the card
+  privateRepo?: boolean; // Skip GitHub enrichment and never link to the repo
 
   // Enriched from GitHub API (populated at build time)
   githubData?: GitHubRepo;
@@ -30,6 +31,20 @@ export interface FeaturedProject {
 
 export const featuredProjects: FeaturedProject[] = [
   {
+    repoName: "economia4punto0",
+    vercelUrl: "https://economia4punto0.vercel.app",
+    privateRepo: true,
+    customDescription:
+      "Argentine economics publication rebuilt from WordPress into a SolidStart + Supabase platform: custom admin CMS, live market indicators, comments, newsletter, search and audio reports.",
+    mainDescription:
+      "Economía4.0 migrates a decade-old WordPress.com publication to a SolidStart app on Supabase, preserving every URL while adding a Spanish admin CMS with Word import, moderated comments and likes, newsletter, Postgres full-text search, live economic indicators and text-to-speech for reports.",
+    demoVideoUrl: "",
+    screenshotUrls: [],
+    featured: true,
+    order: 1,
+    extraPills: ["SolidJS", "SolidStart", "TypeScript", "Supabase", "Bun"],
+  },
+  {
     repoName: "mapland",
     vercelUrl: "https://mapland.vercel.app",
     customDescription: "Interactive map-based application with real-time features",
@@ -44,7 +59,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/mapland/04-drawing-zone.webp",
     ],
     featured: true,
-    order: 2,
+    order: 3,
     extraPills: ["React", "Mapbox", "OpenGL", "React Native", "Supabase"],
   },
   {
@@ -62,7 +77,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/user-lens/04-user-detail.webp",
     ],
     featured: true,
-    order: 3,
+    order: 4,
     extraPills: ["React", "Zustand", "Redis", "Playwright"],
   },
   {
@@ -80,7 +95,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/films/04-wishlist.webp",
     ],
     featured: true,
-    order: 4,
+    order: 6,
     extraPills: ["React", "TanStack Query", "Zustand"],
   },
   {
@@ -116,21 +131,8 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/chat-room-app/04-presence-leave.webp",
     ],
     featured: true,
-    order: 6,
-    extraPills: ["React", "TypeScript", "Supabase", "Vite"],
-  },
-  {
-    repoName: "solid-dashboard",
-    vercelUrl: "https://solid-dashboard-teal.vercel.app",
-    customDescription:
-      "A hands-on Solid.js learning lab exploring reactivity primitives, fine-grained DOM updates, and advanced patterns.",
-    mainDescription:
-      "Solid Dashboard is an interactive learning lab built with Solid.js, covering reactivity primitives, control flow components, state management with Context and createStore, code splitting, and the snapshot pattern for paginated data — all without a virtual DOM.",
-    demoVideoUrl: "",
-    screenshotUrls: [],
-    featured: false,
     order: 7,
-    extraPills: ["Solid.js", "TypeScript", "Kobalte", "Tailwind CSS", "Vite"],
+    extraPills: ["React", "TypeScript", "Supabase", "Vite"],
   },
   {
     repoName: "slidedude",
@@ -148,7 +150,7 @@ export const featuredProjects: FeaturedProject[] = [
       "/projects/slidedude/04-diagram-slide.webp",
     ],
     featured: true,
-    order: 1,
+    order: 2,
     extraPills: ["Shiki", "Shiki Magic Move", "Auth.js", "Upstash Redis", "Framer Motion", "dnd-kit"],
   },
 
@@ -168,6 +170,7 @@ export const featuredProjects: FeaturedProject[] = [
 export async function getEnrichedProjects(): Promise<FeaturedProject[]> {
   const enrichedProjects = await Promise.all(
     featuredProjects.map(async (project) => {
+      if (project.privateRepo) return project;
       try {
         const githubData = await getRepoDetails(project.repoName);
         return { ...project, githubData };

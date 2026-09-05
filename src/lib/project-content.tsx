@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 
 // Dynamic imports for MDX content
 const projectContent: Record<string, () => Promise<{ default: React.ComponentType }>> = {
+  economia4punto0: () => import("@/content/projects/economia4punto0.mdx"),
   mapland: () => import("@/content/projects/mapland.mdx"),
   "user-lens": () => import("@/content/projects/user-lens.mdx"),
   films: () => import("@/content/projects/films.mdx"),

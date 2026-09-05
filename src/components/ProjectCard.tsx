@@ -58,7 +58,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      <p className="relative z-10 mb-3 line-clamp-2 flex-grow text-sm text-slate-500">
+      <p className="relative z-10 mb-3 line-clamp-2 text-sm text-slate-500">
         {description}
       </p>
 

@@ -12,6 +12,7 @@ interface FeaturedProjectsDetailsProps {
 
 // Dynamic MDX content loaders
 const projectContentLoaders: Record<string, React.ComponentType> = {
+  economia4punto0: dynamic(() => import("@/content/projects/economia4punto0.mdx")),
   mapland: dynamic(() => import("@/content/projects/mapland.mdx")),
   "user-lens": dynamic(() => import("@/content/projects/user-lens.mdx")),
   films: dynamic(() => import("@/content/projects/films.mdx")),
